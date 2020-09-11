@@ -1,5 +1,7 @@
 # react-headless-tabs
 
+[![npm version](https://badge.fury.io/js/react-headless-tabs.svg)](https://badge.fury.io/js/react-headless-tabs)
+
 > Simple and customizable headless tabs built with react hooks
 
 ## Getting started
