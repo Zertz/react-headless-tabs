@@ -25,6 +25,8 @@ yarn add react-headless-tabs
 ## Example
 
 ```jsx
+import { Tabs, useTab, useTabPanel } from 'react-headless-tabs';
+
 const Tab = ({ children }) => {
   const { isActive, onClick } = useTab();
 
