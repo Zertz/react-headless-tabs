@@ -48,16 +48,18 @@ const TabPanel = ({ children }) => {
   return <div style={{ display: isActive ? 'block' : 'none' }}>{children}</div>;
 };
 
-export const Uncontrolled = () => (
-  <Tabs>
-    <ul>
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-      <Tab>Tab 3</Tab>
-    </ul>
-    <TabPanel>TabPanel 1</TabPanel>
-    <TabPanel>TabPanel 2</TabPanel>
-    <TabPanel>TabPanel 3</TabPanel>
-  </Tabs>
-);
+export default function App() {
+  return (
+    <Tabs>
+      <ul>
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+        <Tab>Tab 3</Tab>
+      </ul>
+      <TabPanel>TabPanel 1</TabPanel>
+      <TabPanel>TabPanel 2</TabPanel>
+      <TabPanel>TabPanel 3</TabPanel>
+    </Tabs>
+  );
+}
 ```
