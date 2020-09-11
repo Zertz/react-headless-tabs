@@ -1,55 +1,10 @@
 import * as React from 'react';
-import { Tabs, useTab, useTabPanel } from '../src';
+import { Tabs } from '../src';
+import { Tab } from './Tab';
+import { TabPanel } from './TabPanel';
 
 export default {
   title: 'Tabs',
-};
-
-export const Tab = ({
-  children,
-  tabKey,
-}: {
-  children: React.ReactNode;
-  tabKey?: string;
-}) => {
-  const { isActive, onClick } = useTab(tabKey);
-
-  return (
-    <li
-      onClick={onClick}
-      style={{
-        border: `1px solid ${isActive ? 'tomato' : 'transparent'}`,
-        cursor: 'pointer',
-        margin: '0 0 -1px 0',
-        padding: 8,
-      }}
-    >
-      {children}
-    </li>
-  );
-};
-
-export const TabPanel = ({
-  children,
-  tabKey,
-}: {
-  children: React.ReactNode;
-  tabKey?: string;
-}) => {
-  const { isActive } = useTabPanel(tabKey);
-
-  return (
-    <div
-      style={{
-        border: '1px solid tomato',
-        borderTop: 'none',
-        display: isActive ? 'block' : 'none',
-        padding: 8,
-      }}
-    >
-      {children}
-    </div>
-  );
 };
 
 const ulStyle = {
