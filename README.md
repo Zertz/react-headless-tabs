@@ -4,6 +4,12 @@
 
 > Simple and customizable headless tabs built with react hooks
 
+## Features
+
+- 🚛 Bring your own DOM
+- ✨ Correctly handles dynamic tabs, no more empty tab panels
+- 🤹‍♂️ Well suited for complex use cases, like drag and drop
+
 ## Getting started
 
 **npm**
