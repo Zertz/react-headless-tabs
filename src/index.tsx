@@ -9,7 +9,7 @@ import React, {
 
 type Key = string | number;
 
-type SetKey = (key: Key | undefined) => void;
+type SetKey = React.Dispatch<React.SetStateAction<Key | undefined>>;
 
 type Inventory = {
   tabs: Key[];
@@ -75,8 +75,6 @@ export const useTab = (key?: Key) => {
     return key ?? length;
   });
 
-  const isActive = context.key === internalKey;
-
   useEffect(() => {
     if (!isInitialized.current) {
       isInitialized.current = true;
@@ -85,15 +83,29 @@ export const useTab = (key?: Key) => {
     }
 
     return () => {
-      inventory.current.tabs.splice(
-        inventory.current.tabs.indexOf(internalKey),
-        1
-      );
+      const keyIndex = inventory.current.tabs.indexOf(internalKey);
+
+      inventory.current.tabs.splice(keyIndex, 1);
+
+      if (inventory.current.tabs.length === 0) {
+        isInitialized.current = false;
+      }
+
+      setKey(key => {
+        if (key !== internalKey) {
+          return key;
+        }
+
+        return inventory.current.tabs.length > 0
+          ? inventory.current.tabs[keyIndex] ??
+              inventory.current.tabs[inventory.current.tabs.length - 1]
+          : undefined;
+      });
     };
   }, []);
 
   return {
-    isActive,
+    isActive: context.key === internalKey,
     onClick: () => setKey(internalKey),
     setKey,
   };
