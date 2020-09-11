@@ -1,6 +1,5 @@
 import React, {
   createContext,
-  HTMLAttributes,
   useContext,
   useEffect,
   useRef,
@@ -33,7 +32,7 @@ const TabsContext = createContext<{
   setKey: () => undefined,
 });
 
-export interface Props extends HTMLAttributes<HTMLDivElement> {
+export interface Props {
   children:
     | React.ReactNode
     | (({
