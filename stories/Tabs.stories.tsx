@@ -34,7 +34,7 @@ let tabCounter = 4;
 export const DynamicTabs = () => {
   const [tabs, setTabs] = useState(['Tab 1', 'Tab 2', 'Tab 3']);
 
-  const handleCloseTab = tab => () => {
+  const handleCloseTab = (tab: string) => () => {
     setTabs(tabs => tabs.filter(t => t !== tab));
   };
 
