@@ -2,30 +2,24 @@ import React, { useState } from 'react';
 import { Tabs } from '../src';
 import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
+import '../tailwind.css';
 
 export default {
   title: 'Tabs',
 };
 
-const ulStyle = {
-  alignItems: 'center',
-  borderBottom: '1px solid tomato',
-  display: 'flex',
-  listStyleType: 'none',
-  margin: 0,
-  padding: 0,
-};
-
 export const StaticTabs = () => (
   <Tabs>
-    <ul style={ulStyle}>
+    <ul className="flex items-center overflow-hidden rounded-t-lg bg-indigo-400">
       <Tab>Tab 1</Tab>
       <Tab>Tab 2</Tab>
       <Tab>Tab 3</Tab>
     </ul>
-    <TabPanel>TabPanel 1</TabPanel>
-    <TabPanel>TabPanel 2</TabPanel>
-    <TabPanel>TabPanel 3</TabPanel>
+    <div className="border border-indigo-600 overflow-hidden rounded-b-lg">
+      <TabPanel>TabPanel 1</TabPanel>
+      <TabPanel>TabPanel 2</TabPanel>
+      <TabPanel>TabPanel 3</TabPanel>
+    </div>
   </Tabs>
 );
 
@@ -44,32 +38,66 @@ export const DynamicTabs = () => {
 
   return (
     <Tabs>
-      {({ key, setKey }) => (
-        <>
-          <ul style={ulStyle}>
-            {tabs.map(tab => (
-              <Tab key={tab} tabKey={tab} onClose={handleCloseTab(tab)}>
-                {tab}
-              </Tab>
-            ))}
-            <li style={{ borderTop: '1px solid transparent', margin: 8 }}>
-              <button onClick={handleNewTab}>New tab</button>
-            </li>
-          </ul>
-          {tabs.map(tab => (
-            <TabPanel key={tab} tabKey={tab}>
-              {tab}
-            </TabPanel>
-          ))}
-          <button
-            disabled={!tabs[1] || key === tabs[1]}
-            onClick={() => setKey(tabs[1])}
-            style={{ marginTop: 8 }}
-          >
-            Open tab 2
-          </button>
-        </>
-      )}
+      {({ key, setKey }) => {
+        const tabIndex = tabs.indexOf(key as string);
+
+        return (
+          <div className="flex flex-col h-full">
+            <ul className="flex items-center overflow-hidden rounded-t-lg bg-indigo-400">
+              {tabs.map(tab => (
+                <Tab key={tab} tabKey={tab} onClose={handleCloseTab(tab)}>
+                  {tab}
+                </Tab>
+              ))}
+              <li className="mx-2">
+                <button
+                  className="p-1 rounded-full text-sm text-white bg-indigo-400 focus:outline-none focus:shadow-outline focus:bg-indigo-700 hover:bg-indigo-700 transition duration-300 ease-in-out"
+                  onClick={handleNewTab}
+                  title="New tab"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    ></path>
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <div className="border border-indigo-600 overflow-hidden rounded-b-lg">
+              {tabs.map(tab => (
+                <TabPanel key={tab} tabKey={tab}>
+                  {tab}
+                </TabPanel>
+              ))}
+            </div>
+            <div className="flex">
+              <button
+                className="px-4 py-2 mt-2 mr-2 rounded text-white bg-purple-600 focus:bg-purple-500 hover:bg-purple-500 transition duration-300 ease-in-out"
+                disabled={!tabs[tabIndex - 1]}
+                onClick={() => setKey(tabs[tabIndex - 1])}
+              >
+                Previous
+              </button>
+              <button
+                className="px-4 py-2 mt-2 rounded text-white bg-purple-600 focus:bg-purple-500 hover:bg-purple-500 transition duration-300 ease-in-out"
+                disabled={!tabs[tabIndex + 1]}
+                onClick={() => setKey(tabs[tabIndex + 1])}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        );
+      }}
     </Tabs>
   );
 };

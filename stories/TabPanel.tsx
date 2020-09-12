@@ -11,15 +11,6 @@ export const TabPanel = ({
   const { isActive } = useTabPanel(tabKey);
 
   return (
-    <div
-      style={{
-        border: '1px solid tomato',
-        borderTop: 'none',
-        display: isActive ? 'block' : 'none',
-        padding: 8,
-      }}
-    >
-      {children}
-    </div>
+    <div className={`p-2 ${isActive ? 'block' : 'hidden'}`}>{children}</div>
   );
 };
