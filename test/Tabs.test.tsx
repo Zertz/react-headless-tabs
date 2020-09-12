@@ -28,3 +28,12 @@ describe('Draggable', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 });
+
+describe('Overflow', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+
+    ReactDOM.render(<Tabs.Overflow />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+});
