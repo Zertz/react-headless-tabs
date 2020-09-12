@@ -15,16 +15,18 @@ type Inventory = {
   tabPanels: Key[];
 };
 
-type Context = {
-  isInitialized: React.MutableRefObject<boolean>;
-  inventory: React.MutableRefObject<Inventory>;
-  key: Key | undefined;
-  setKey: SetKey;
-};
+const TabsContext = createContext(
+  {} as {
+    isInitialized: React.MutableRefObject<boolean>;
+    inventory: React.MutableRefObject<Inventory>;
+    key: Key | undefined;
+    setKey: SetKey;
+  }
+);
 
-const TabsContext = createContext({} as Context);
-
-export interface Props {
+export function Tabs({
+  children,
+}: {
   children:
     | React.ReactNode
     | (({
@@ -34,9 +36,7 @@ export interface Props {
         key: Key | undefined;
         setKey: SetKey;
       }) => React.ReactNode);
-}
-
-export function Tabs({ children }: Props) {
+}) {
   const isInitialized = useRef(false);
 
   const inventory = useRef<Inventory>({
