@@ -2,7 +2,7 @@ import React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as Tabs from '../stories/Tabs.stories';
 
-describe('Horizontal', () => {
+describe('Basic', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
 
