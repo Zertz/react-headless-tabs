@@ -2,13 +2,15 @@
 
 [![npm version](https://badge.fury.io/js/react-headless-tabs.svg)](https://badge.fury.io/js/react-headless-tabs)
 
-> Simple and customizable headless tabs built with react hooks
+> Simple and flexible headless tabs built with react hooks
+
+👉 [**Check out the examples!**](https://www.chromatic.com/component?appId=5f5ad484e2d7e80022e81be8&name=Tabs)
 
 ## Features
 
-- 🚛 Bring your own DOM
-- ✨ Correctly handles dynamic tabs, no more empty tab panels
-- 🤹‍♂️ Well suited for complex use cases, like drag and drop
+- 🚛 Bring your own DOM!
+- ✨ Correctly handles dynamic tabs, no more empty tab panels!
+- 🤹‍♂️ Well suited for complex use cases, like drag and drop!
 
 ## Getting started
 
@@ -30,42 +32,38 @@ pnpm add react-headless-tabs
 yarn add react-headless-tabs
 ```
 
-## Example
+## API
+
+**Tabs**
+
+> Component where state is maintained.
+
+The most common way to get started is with children:
 
 ```jsx
-import { Tabs, useTab, useTabPanel } from 'react-headless-tabs';
+<Tabs>
+  <div>...</div>
+</Tabs>
+```
 
-const Tab = ({ children }) => {
-  const { isActive, onClick } = useTab();
+For advanced use cases, a render function can be used to monitor and control internal state:
 
-  return (
-    <li
-      onClick={onClick}
-      style={{ color: isActive ? 'deeppink' : 'deepskyblue' }}
-    >
-      {children}
-    </li>
-  );
-};
+```jsx
+<Tabs>{({ key, setKey }) => <div>...</div>}</Tabs>
+```
 
-const TabPanel = ({ children }) => {
-  const { isActive } = useTabPanel();
+**useTab**
 
-  return <div style={{ display: isActive ? 'block' : 'none' }}>{children}</div>;
-};
+> Hook to create a tab.
 
-export default function App() {
-  return (
-    <Tabs>
-      <ul>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-      </ul>
-      <TabPanel>TabPanel 1</TabPanel>
-      <TabPanel>TabPanel 2</TabPanel>
-      <TabPanel>TabPanel 3</TabPanel>
-    </Tabs>
-  );
-}
+```jsx
+const { isActive, onClick, setKey } = useTab();
+```
+
+**useTabPanel**
+
+> Hook to create a tab panel.
+
+```jsx
+const { isActive, setKey } = useTabPanel();
 ```
