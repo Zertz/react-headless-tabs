@@ -15,22 +15,14 @@ type Inventory = {
   tabPanels: Key[];
 };
 
-const TabsContext = createContext<{
+type Context = {
   isInitialized: React.MutableRefObject<boolean>;
   inventory: React.MutableRefObject<Inventory>;
   key: Key | undefined;
   setKey: SetKey;
-}>({
-  isInitialized: { current: false },
-  inventory: {
-    current: {
-      tabs: [],
-      tabPanels: [],
-    },
-  },
-  key: undefined,
-  setKey: () => undefined,
-});
+};
+
+const TabsContext = createContext({} as Context);
 
 export interface Props {
   children:
