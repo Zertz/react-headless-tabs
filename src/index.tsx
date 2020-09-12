@@ -103,7 +103,7 @@ export const useTab = (key?: Key) => {
 };
 
 export const useTabPanel = (key?: Key) => {
-  const { inventory, ...context } = useContext(TabsContext);
+  const { inventory, setKey, ...context } = useContext(TabsContext);
 
   const [internalKey] = useState(() => {
     const length = inventory.current.tabPanels.push(
@@ -126,5 +126,6 @@ export const useTabPanel = (key?: Key) => {
 
   return {
     isActive,
+    setKey,
   };
 };
