@@ -1,21 +1,30 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import { StaticTabs, DynamicTabs } from '../stories/Tabs.stories';
+import * as Tabs from '../stories/Tabs.stories';
 
-describe('UncontrolledTabs', () => {
+describe('Basic', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
 
-    ReactDOM.render(<StaticTabs />, div);
+    ReactDOM.render(<Tabs.Basic />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
 
-describe('ControlledTabs', () => {
+describe('Browser', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
 
-    ReactDOM.render(<DynamicTabs />, div);
+    ReactDOM.render(<Tabs.Browser />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+});
+
+describe('Draggable', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+
+    ReactDOM.render(<Tabs.Draggable />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
