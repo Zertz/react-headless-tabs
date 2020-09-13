@@ -53,17 +53,15 @@ export function Tabs({
   );
 }
 
-export const useTab = (key?: Key) => {
-  const { isInitialized, inventory, setKey, ...context } = useContext(
-    TabsContext
-  );
+export const useTab = (tabKey?: Key) => {
+  const { isInitialized, inventory, key, setKey } = useContext(TabsContext);
 
   const [internalKey] = useState(() => {
     const length = inventory.current.tabs.push(
-      key ?? inventory.current.tabs.length + 1
+      tabKey ?? inventory.current.tabs.length + 1
     );
 
-    return key ?? length;
+    return tabKey ?? length;
   });
 
   useEffect(() => {
@@ -96,24 +94,22 @@ export const useTab = (key?: Key) => {
   }, []);
 
   return {
-    isActive: context.key === internalKey,
+    isActive: key === internalKey,
     onClick: () => setKey(internalKey),
     setKey,
   };
 };
 
-export const useTabPanel = (key?: Key) => {
-  const { inventory, setKey, ...context } = useContext(TabsContext);
+export const useTabPanel = (tabKey?: Key) => {
+  const { inventory, key, setKey } = useContext(TabsContext);
 
   const [internalKey] = useState(() => {
     const length = inventory.current.tabPanels.push(
-      key ?? inventory.current.tabPanels.length + 1
+      tabKey ?? inventory.current.tabPanels.length + 1
     );
 
-    return key ?? length;
+    return tabKey ?? length;
   });
-
-  const isActive = context.key === internalKey;
 
   useEffect(() => {
     return () => {
@@ -125,7 +121,7 @@ export const useTabPanel = (key?: Key) => {
   }, []);
 
   return {
-    isActive,
+    isActive: key === internalKey,
     setKey,
   };
 };
