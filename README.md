@@ -15,6 +15,7 @@
 
 ## Features
 
+- 🌱 [Under 1KB minified and gzipped](https://bundlephobia.com/result?p=react-headless-tabs)
 - 🚛 Bring your own DOM!
 - ✨ Correctly handles dynamic tabs, no more empty tab panels!
 - 🤹‍♂️ Well suited for complex use cases, like drag and drop!
