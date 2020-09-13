@@ -1,6 +1,6 @@
 # react-headless-tabs
 
-[![npm version](https://badge.fury.io/js/react-headless-tabs.svg)](https://badge.fury.io/js/react-headless-tabs)
+[![npm](https://badgen.net/npm/v/react-headless-tabs)](https://www.npmjs.com/package/react-headless-tabs) [![bundlephobia](https://badgen.net/bundlephobia/minzip/react-headless-tabs)](https://bundlephobia.com/result?p=react-headless-tabs)
 
 > Headless, simple, and highly flexible tab-like primitives built with react hooks
 
