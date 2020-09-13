@@ -29,6 +29,24 @@ describe('Draggable', () => {
   });
 });
 
+describe('Dropdown', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+
+    ReactDOM.render(<Tabs.Dropdown />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+});
+
+describe('Nested', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+
+    ReactDOM.render(<Tabs.Nested />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+});
+
 describe('Overflow', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');

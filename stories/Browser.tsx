@@ -22,7 +22,7 @@ export const Browser = () => {
 
         return (
           <>
-            <ul className="flex items-center border-b border-gray-200">
+            <ul className="flex items-center border-b border-gray-300">
               {tabs.map(tab => (
                 <Tab key={tab} tabKey={tab} onClose={handleCloseTab(tab)}>
                   {tab}

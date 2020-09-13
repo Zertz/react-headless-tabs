@@ -6,7 +6,7 @@ export const Overflow = () => (
   <Tabs>
     {({ setKey }) => (
       <>
-        <nav className="flex border-b border-gray-200">
+        <nav className="flex border-b border-gray-300">
           <Tab>My Account</Tab>
           <Tab>Company</Tab>
           <select

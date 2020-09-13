@@ -4,14 +4,14 @@ import { TabPanel } from './TabPanel';
 
 export const Nested = () => (
   <Tabs>
-    <nav className="flex border-b border-gray-200">
+    <nav className="flex border-b border-gray-300">
       <Tab>My Account</Tab>
       <Tab>Company</Tab>
     </nav>
     <TabPanel>
       My Account
       <Tabs>
-        <nav className="flex border-b border-gray-200">
+        <nav className="flex border-b border-gray-300">
           <Tab>Profile</Tab>
           <Tab>Settings</Tab>
         </nav>
@@ -22,7 +22,7 @@ export const Nested = () => (
     <TabPanel>
       Company
       <Tabs>
-        <nav className="flex border-b border-gray-200">
+        <nav className="flex border-b border-gray-300">
           <Tab>Team Members</Tab>
           <Tab>Billing</Tab>
         </nav>

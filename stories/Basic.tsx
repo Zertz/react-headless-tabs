@@ -4,7 +4,7 @@ import { TabPanel } from './TabPanel';
 
 export const Basic = () => (
   <Tabs>
-    <nav className="flex border-b border-gray-200">
+    <nav className="flex border-b border-gray-300">
       <Tab>My Account</Tab>
       <Tab>Company</Tab>
       <Tab>Team Members</Tab>
