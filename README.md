@@ -4,18 +4,18 @@
 
 > Headless, simple, and highly flexible tab-like primitives built with react hooks
 
-👉 [**Check out the examples:**](https://www.chromatic.com/component?appId=5f5ad484e2d7e80022e81be8&name=Tabs)
+👉 [**Check out the interactive examples!**](https://www.chromatic.com/component?appId=5f5ad484e2d7e80022e81be8&name=Tabs)
 
-- Basic tabs
-- Browser-like tabs
-- Draggable, vertical tabs
-- Dropdown menu
-- Nested tabs
-- Static tabs with overflow menu
+- [Basic tabs](stories/Basic.tsx)
+- [Browser-like tabs](stories/Browser.tsx)
+- [Draggable, vertical tabs](stories/Draggable.tsx)
+- [Dropdown menu](stories/Dropdown.tsx)
+- [Nested tabs](stories/Nested.tsx)
+- [Static tabs with overflow menu](stories/Overflow.tsx)
 
 ## Features
 
-- 🌱 [Under 1KB minified and gzipped](https://bundlephobia.com/result?p=react-headless-tabs)
+- 🌱 Under 1KB minified and gzipped
 - 🚛 Bring your own DOM!
 - ✨ Correctly handles dynamic tabs, no more empty tab panels!
 - 🤹‍♂️ Well suited for complex use cases, like drag and drop!
