@@ -2,9 +2,16 @@
 
 [![npm version](https://badge.fury.io/js/react-headless-tabs.svg)](https://badge.fury.io/js/react-headless-tabs)
 
-> Simple and flexible headless tabs built with react hooks
+> Headless, simple, and highly flexible tab-like primitives built with react hooks
 
-👉 [**Check out the examples!**](https://www.chromatic.com/component?appId=5f5ad484e2d7e80022e81be8&name=Tabs)
+👉 [**Check out the examples:**](https://www.chromatic.com/component?appId=5f5ad484e2d7e80022e81be8&name=Tabs)
+
+- Basic tabs
+- Browser-like tabs
+- Draggable, vertical tabs
+- Dropdown menu
+- Nested tabs
+- Static tabs with overflow menu
 
 ## Features
 
