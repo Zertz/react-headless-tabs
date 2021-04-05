@@ -16,7 +16,7 @@ export const TabPanel = ({
 
   return (
     <div className="overflow-hidden p-4 prose prose-lg text-gray-600 mx-auto">
-      <p>{children}</p>
+      {children}
     </div>
   );
 };
