@@ -1,51 +1,92 @@
 import * as React from 'react';
-import { Tabs, useTab } from '../src';
-import { TabPanel } from './TabPanel';
+import { useTabs } from '../src';
+import { TabSelector } from './TabSelector';
 
-export const Nested = () => (
-  <Tabs>
-    <nav className="flex border-b border-gray-300">
-      <Tab>My Account</Tab>
-      <Tab>Company</Tab>
-    </nav>
-    <TabPanel>
-      My Account
-      <Tabs>
-        <nav className="flex border-b border-gray-300">
-          <Tab>Profile</Tab>
-          <Tab>Settings</Tab>
-        </nav>
-        <TabPanel>Profile</TabPanel>
-        <TabPanel>Settings</TabPanel>
-      </Tabs>
-    </TabPanel>
-    <TabPanel>
-      Company
-      <Tabs>
-        <nav className="flex border-b border-gray-300">
-          <Tab>Team Members</Tab>
-          <Tab>Billing</Tab>
-        </nav>
-        <TabPanel>Team Members</TabPanel>
-        <TabPanel>Billing</TabPanel>
-      </Tabs>
-    </TabPanel>
-  </Tabs>
-);
+export const Nested = () => {
+  const { Tab, TabPanel } = useTabs({
+    tabs: ['account', 'company'],
+  });
 
-const Tab = ({ children }: { children: React.ReactNode }) => {
-  const { isActive, onClick } = useTab();
+  const { Tab: AccountTab, TabPanel: AccountTabPanel } = useTabs({
+    tabs: ['profile', 'settings'],
+  });
+
+  const { Tab: CompanyTab, TabPanel: CompanyTabPanel } = useTabs({
+    tabs: ['team', 'billing'],
+  });
 
   return (
-    <button
-      className={`mr-8 group inline-flex items-center px-2 py-4 border-b-2 font-medium text-sm leading-5 cursor-pointer whitespace-no-wrap ${
-        isActive
-          ? 'border-indigo-500 text-indigo-600 focus:outline-none focus:text-indigo-800 focus:border-indigo-700'
-          : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300'
-      }`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <>
+      <nav className="flex border-b border-gray-300">
+        <Tab tabKey="account">
+          {({ isActive, onClick }) => (
+            <TabSelector isActive={isActive} onClick={onClick}>
+              My Account
+            </TabSelector>
+          )}
+        </Tab>
+        <Tab tabKey="company">
+          {({ isActive, onClick }) => (
+            <TabSelector isActive={isActive} onClick={onClick}>
+              Company
+            </TabSelector>
+          )}
+        </Tab>
+      </nav>
+      <TabPanel className="p-4" tabKey="account">
+        My Account
+        <>
+          <nav className="flex border-b border-gray-300">
+            <AccountTab tabKey="profile">
+              {({ isActive, onClick }) => (
+                <TabSelector isActive={isActive} onClick={onClick}>
+                  Profile
+                </TabSelector>
+              )}
+            </AccountTab>
+            <AccountTab tabKey="settings">
+              {({ isActive, onClick }) => (
+                <TabSelector isActive={isActive} onClick={onClick}>
+                  Settings
+                </TabSelector>
+              )}
+            </AccountTab>
+          </nav>
+          <AccountTabPanel className="p-4" tabKey="profile">
+            Profile
+          </AccountTabPanel>
+          <AccountTabPanel className="p-4" tabKey="settings">
+            Settings
+          </AccountTabPanel>
+        </>
+      </TabPanel>
+      <TabPanel className="p-4" tabKey="company">
+        Company
+        <>
+          <nav className="flex border-b border-gray-300">
+            <CompanyTab tabKey="team">
+              {({ isActive, onClick }) => (
+                <TabSelector isActive={isActive} onClick={onClick}>
+                  Team Members
+                </TabSelector>
+              )}
+            </CompanyTab>
+            <CompanyTab tabKey="billing">
+              {({ isActive, onClick }) => (
+                <TabSelector isActive={isActive} onClick={onClick}>
+                  Billing
+                </TabSelector>
+              )}
+            </CompanyTab>
+          </nav>
+          <CompanyTabPanel className="p-4" tabKey="team">
+            Team Members
+          </CompanyTabPanel>
+          <CompanyTabPanel className="p-4" tabKey="billing">
+            Billing
+          </CompanyTabPanel>
+        </>
+      </TabPanel>
+    </>
   );
 };
