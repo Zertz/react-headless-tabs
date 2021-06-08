@@ -7,14 +7,6 @@ let tabCounter = 4;
 export const Browser = () => {
   const [tabs, setTabs] = useState(['Tab 1', 'Tab 2', 'Tab 3']);
 
-  const handleCloseTab = (tab: string) => () => {
-    setTabs(tabs => tabs.filter(t => t !== tab));
-  };
-
-  const handleNewTab = () => {
-    setTabs(tabs => tabs.concat(`Tab ${tabCounter++}`));
-  };
-
   return (
     <Tabs>
       {({ key, setKey }) => {
@@ -24,14 +16,25 @@ export const Browser = () => {
           <>
             <ul className="flex items-center border-b border-gray-300">
               {tabs.map(tab => (
-                <Tab key={tab} tabKey={tab} onClose={handleCloseTab(tab)}>
+                <Tab
+                  key={tab}
+                  tabKey={tab}
+                  onClose={() => {
+                    setTabs(tabs => tabs.filter(t => t !== tab));
+                  }}
+                >
                   {tab}
                 </Tab>
               ))}
               <span className="py-2 inline-flex items-center">
                 <button
                   className="p-1 rounded-full text-sm text-gray-500 focus:outline-none focus:shadow-outline focus:bg-indigo-600 hover:bg-indigo-600 hover:text-white transition duration-300 ease-in-out"
-                  onClick={handleNewTab}
+                  onClick={() => {
+                    const newTabKey = `Tab ${tabCounter++}`;
+
+                    setTabs(tabs => tabs.concat(newTabKey));
+                    setKey(newTabKey);
+                  }}
                   title="New tab"
                 >
                   <svg
