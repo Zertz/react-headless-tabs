@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useTabs } from '../src';
+import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
-export const Basic = () => {
+export function Basic() {
   const { Tab, TabPanel } = useTabs({
     tabs: ['account', 'company', 'team', 'billing'],
   });
@@ -53,4 +53,4 @@ export const Basic = () => {
       </TabPanel>
     </>
   );
-};
+}

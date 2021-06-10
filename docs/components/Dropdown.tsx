@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { useTabs } from '../src';
+import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
-export const Dropdown = () => {
+export function Dropdown() {
   const { activeTab, setActiveTab, Tab, TabPanel } = useTabs({
     defaultTab: null,
     tabs: ['account', 'company', 'team', 'billing'],
   });
 
   return (
-    <>
+    <div className="relative">
       <nav className="flex border-b border-gray-300">
         <Tab tabKey="account">
           {({ isActive, onClick }) => (
@@ -64,10 +64,8 @@ export const Dropdown = () => {
         </button>
       </div>
       <div className="overflow-hidden p-4 prose prose-lg text-gray-600 mx-auto">
-        <p>Amazing content.</p>
-        <p className="mt-1">Awesome content.</p>
-        <p className="mt-1">Incredible content.</p>
+        <p>Incredibly amazing awesome content.</p>
       </div>
-    </>
+    </div>
   );
-};
+}

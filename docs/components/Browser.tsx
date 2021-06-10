@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useTabs } from '../src';
+import * as React from 'react';
+import { useTabs } from '../../src';
 
 let tabCounter = 4;
 
-export const Browser = () => {
-  const [tabs, setTabs] = useState(['Tab 1', 'Tab 2', 'Tab 3']);
+export function Browser() {
+  const [tabs, setTabs] = React.useState(['Tab 1', 'Tab 2', 'Tab 3']);
 
   const { activeIndex, setActiveTab, Tab, TabPanel } = useTabs({
     tabs,
@@ -93,7 +93,7 @@ export const Browser = () => {
       </span>
     </>
   );
-};
+}
 
 const TabSelector = ({
   isActive,

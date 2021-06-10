@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useTabs } from '../src';
+import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
-export const Overflow = () => {
+export function Overflow() {
   const { setActiveTab, Tab, TabPanel } = useTabs({
     tabs: ['account', 'company', 'team', 'billing'],
   });
@@ -50,4 +50,4 @@ export const Overflow = () => {
       </TabPanel>
     </>
   );
-};
+}

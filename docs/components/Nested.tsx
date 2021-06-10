@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useTabs } from '../src';
+import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
-export const Nested = () => {
+export function Nested() {
   const { Tab, TabPanel } = useTabs({
     tabs: ['account', 'company'],
   });
@@ -89,4 +89,4 @@ export const Nested = () => {
       </TabPanel>
     </>
   );
-};
+}
