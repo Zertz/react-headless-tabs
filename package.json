@@ -22,11 +22,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
   "jest": {
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy"
@@ -39,24 +34,23 @@
     "trailingComma": "es5"
   },
   "name": "react-headless-tabs",
+  "private": true,
+  "workspaces": [
+    "docs"
+  ],
   "author": "Pier-Luc Gendreau",
   "module": "dist/react-headless-tabs.esm.js",
   "devDependencies": {
     "@babel/core": "^7.14.3",
-    "@storybook/react": "^6.2.9",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
     "babel-loader": "^8.1.0",
-    "husky": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
-    "react-dnd": "^11.1.3",
-    "react-dnd-html5-backend": "^11.1.3",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "tailwindcss": "^1.8.8",
     "ts-loader": "^9.2.3",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",

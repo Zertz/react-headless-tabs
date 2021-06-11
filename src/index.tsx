@@ -1,127 +1,108 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import * as React from 'react';
 
-type Key = string | number;
+type Div = React.HTMLAttributes<HTMLDivElement>;
 
-type SetKey = React.Dispatch<React.SetStateAction<Key | undefined>>;
-
-type Inventory = {
-  tabs: Key[];
-  tabPanels: Key[];
-};
-
-const TabsContext = createContext(
-  {} as {
-    isInitialized: React.MutableRefObject<boolean>;
-    inventory: React.MutableRefObject<Inventory>;
-    key: Key | undefined;
-    setKey: SetKey;
-  }
-);
-
-export function Tabs({
-  children,
+export function useTabs<K extends string>({
+  defaultTab,
+  tabs,
 }: {
-  children:
-    | React.ReactNode
-    | (({
-        key,
-        setKey,
-      }: {
-        key: Key | undefined;
-        setKey: SetKey;
-      }) => React.ReactNode);
+  defaultTab?: K | null;
+  tabs: K[];
 }) {
-  const isInitialized = useRef(false);
+  const [activeTab, setActiveTab] = React.useState(defaultTab);
+  const activeTabRef = React.useRef(activeTab);
 
-  const inventory = useRef<Inventory>({
-    tabs: [],
-    tabPanels: [],
-  });
-
-  const [key, setKey] = useState<Key>();
-
-  return (
-    <TabsContext.Provider value={{ isInitialized, inventory, key, setKey }}>
-      {typeof children === 'function' ? children({ key, setKey }) : children}
-    </TabsContext.Provider>
-  );
-}
-
-export const useTab = (tabKey?: Key) => {
-  const { isInitialized, inventory, key, setKey } = useContext(TabsContext);
-
-  const [internalKey] = useState(() => {
-    const length = inventory.current.tabs.push(
-      tabKey ?? inventory.current.tabs.length + 1
-    );
-
-    return tabKey ?? length;
-  });
-
-  useEffect(() => {
-    if (!isInitialized.current) {
-      isInitialized.current = true;
-
-      setKey(internalKey);
+  const activeIndex = React.useMemo(() => {
+    if (activeTab) {
+      return tabs.indexOf(activeTab);
     }
 
-    return () => {
-      const keyIndex = inventory.current.tabs.indexOf(internalKey);
+    return -1;
+  }, [activeTab]);
 
-      inventory.current.tabs.splice(keyIndex, 1);
+  React.useEffect(() => {
+    if (tabs.length === 0) {
+      setActiveTab(undefined);
 
-      if (inventory.current.tabs.length === 0) {
-        isInitialized.current = false;
-      }
+      return;
+    }
 
-      setKey(key => {
-        if (key !== internalKey) {
-          return key;
-        }
+    if (activeTab === null || (activeTab && tabs.includes(activeTab))) {
+      return;
+    }
 
-        return inventory.current.tabs.length > 0
-          ? inventory.current.tabs[keyIndex] ??
-              inventory.current.tabs[inventory.current.tabs.length - 1]
-          : undefined;
-      });
-    };
-  }, []);
+    if (activeIndex >= 0 && (tabs[activeIndex] || tabs[activeIndex - 1])) {
+      setActiveTab(tabs[activeIndex] || tabs[activeIndex - 1]);
 
-  return {
-    isActive: key === internalKey,
-    onClick: () => setKey(internalKey),
-    setKey,
-  };
-};
+      return;
+    }
 
-export const useTabPanel = (tabKey?: Key) => {
-  const { inventory, key, setKey } = useContext(TabsContext);
+    setActiveTab(tabs[0]);
+  }, [activeIndex, activeTab, tabs]);
 
-  const [internalKey] = useState(() => {
-    const length = inventory.current.tabPanels.push(
-      tabKey ?? inventory.current.tabPanels.length + 1
-    );
+  activeTabRef.current = activeTab;
 
-    return tabKey ?? length;
-  });
-
-  useEffect(() => {
-    return () => {
-      inventory.current.tabPanels.splice(
-        inventory.current.tabPanels.indexOf(internalKey),
-        1
+  const Tab = React.useCallback(
+    ({
+      children,
+      tabKey,
+    }: {
+      children: (props: {
+        isActive: boolean;
+        onClick: () => void;
+      }) => React.ReactNode;
+      tabKey: K;
+    }) => {
+      return (
+        <>
+          {children({
+            isActive: activeTabRef.current === tabKey,
+            onClick: () => setActiveTab(tabKey),
+          })}
+        </>
       );
-    };
-  }, []);
+    },
+    []
+  );
+
+  const TabPanel = React.useCallback(
+    ({ tabKey, ...rest }: { eager?: boolean; tabKey: K } & Div) => (
+      <LazyTabPanel {...rest} active={activeTabRef.current === tabKey} />
+    ),
+    []
+  );
 
   return {
-    isActive: key === internalKey,
-    setKey,
+    activeIndex,
+    activeTab,
+    setActiveTab,
+    Tab,
+    TabPanel,
   };
-};
+}
+
+function LazyTabPanel({
+  active,
+  children,
+  eager = false,
+  ...rest
+}: {
+  active: boolean;
+  eager?: boolean;
+} & Div) {
+  const [shouldRender, setShouldRender] = React.useState(eager);
+
+  React.useEffect(() => {
+    if (!active) {
+      return;
+    }
+
+    setShouldRender(true);
+  }, [active]);
+
+  return (
+    <div {...rest} hidden={!active}>
+      {shouldRender ? children : null}
+    </div>
+  );
+}
