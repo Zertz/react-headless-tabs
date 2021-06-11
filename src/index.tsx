@@ -66,8 +66,16 @@ export function useTabs<K extends string>({
   );
 
   const TabPanel = React.useCallback(
-    ({ tabKey, ...rest }: { eager?: boolean; tabKey: K } & Div) => (
-      <LazyTabPanel {...rest} active={activeTabRef.current === tabKey} />
+    ({
+      mode = 'lazy',
+      tabKey,
+      ...rest
+    }: { mode?: 'eager' | 'lazy'; tabKey: K } & Div) => (
+      <InternalTabPanel
+        {...rest}
+        active={activeTabRef.current === tabKey}
+        mode={mode}
+      />
     ),
     []
   );
@@ -81,16 +89,16 @@ export function useTabs<K extends string>({
   };
 }
 
-function LazyTabPanel({
+function InternalTabPanel({
   active,
   children,
-  eager = false,
+  mode,
   ...rest
 }: {
   active: boolean;
-  eager?: boolean;
+  mode: 'eager' | 'lazy';
 } & Div) {
-  const [shouldRender, setShouldRender] = React.useState(eager);
+  const [shouldRender, setShouldRender] = React.useState(mode === 'eager');
 
   React.useEffect(() => {
     if (!active) {

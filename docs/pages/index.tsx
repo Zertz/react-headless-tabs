@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useTabs } from '../../src';
 import { Basic } from '../components/Basic';
 import { Browser } from '../components/Browser';
+import { Draggable } from '../components/Draggable';
 import { Dropdown } from '../components/Dropdown';
 import { Example } from '../components/Example';
 import { Nested } from '../components/Nested';
@@ -195,6 +196,12 @@ export default function Index() {
             url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Browser.tsx"
           >
             <Browser />
+          </Example>
+          <Example
+            title="Draggable"
+            url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Draggable.tsx"
+          >
+            <Draggable />
           </Example>
           <Example
             title="Dropdown"
