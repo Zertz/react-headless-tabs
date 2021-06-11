@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 import { Basic } from '../docs/components/Basic';
 import { Browser } from '../docs/components/Browser';
 import { Dropdown } from '../docs/components/Dropdown';
