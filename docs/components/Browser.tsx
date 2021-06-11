@@ -56,7 +56,7 @@ export function Browser() {
       </ul>
       {tabs.map(tab => (
         <TabPanel key={tab} className="p-4" tabKey={tab}>
-          {tab}
+          {`Panel ${tab.split(' ')[1]}`}
         </TabPanel>
       ))}
       <span className="relative z-0 inline-flex shadow-sm mt-4">
