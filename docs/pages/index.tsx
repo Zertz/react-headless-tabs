@@ -123,38 +123,65 @@ export default function Index() {
             </div>
             <pre className="bg-gray-800 p-2 rounded">
               <code>{`const {
+  Tab,
+  TabPanel,
   activeIndex,
   activeTab,
   setActiveTab,
-  Tab,
-  TabPanel,
 } = useTabs<K extends string>({
-  defaultTab?: K | null;
   tabs: K[];
+  defaultTab?: K | null;
 })`}</code>
             </pre>
           </div>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>defaultTab</code>
-          </pre>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>tabs</code>
-          </pre>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>activeIndex</code>
-          </pre>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>activeTab</code>
-          </pre>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>setActiveTab</code>
-          </pre>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>Tab</code>
-          </pre>
-          <pre className="bg-gray-800 p-2 rounded">
-            <code>TabPanel</code>
-          </pre>
+          <div className="divide-y divide-solid divide-gray-400 space-y-8">
+            <div className="space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>tabs</code>
+              </pre>
+              <p>
+                [Required] An array of strings representing the list of tabs.
+              </p>
+            </div>
+            <div className="pt-8 space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>defaultTab</code>
+              </pre>
+              <p>
+                [Optional] The tab that should initially be selected{' '}
+                <em>(defaults to the first one)</em>
+              </p>
+            </div>
+            <div className="pt-8 space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>Tab</code>
+              </pre>
+              <p>
+                [Recommended] Renderless component that returns a render
+                function with <code>isActive</code> and <code>onClick</code>
+              </p>
+            </div>
+            <div className="pt-8 space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>TabPanel</code>
+              </pre>
+            </div>
+            <div className="pt-8 space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>activeIndex</code>
+              </pre>
+            </div>
+            <div className="pt-8 space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>activeTab</code>
+              </pre>
+            </div>
+            <div className="pt-8 space-y-2">
+              <pre className="bg-gray-800 p-2 rounded">
+                <code>setActiveTab</code>
+              </pre>
+            </div>
+          </div>
         </TabPanel>
         <TabPanel className="py-6 space-y-12" tabKey="examples">
           <Example
