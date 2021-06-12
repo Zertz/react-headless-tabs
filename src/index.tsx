@@ -9,7 +9,7 @@ export function useTabs<K extends string>({
   defaultTab?: K | null;
   tabs: K[];
 }) {
-  const [activeTab, setActiveTab] = React.useState(defaultTab);
+  const [activeTab, setActiveTab] = React.useState<K>();
   const activeTabRef = React.useRef(activeTab);
 
   const activeIndex = React.useMemo(() => {
@@ -18,7 +18,7 @@ export function useTabs<K extends string>({
     }
 
     return -1;
-  }, [activeTab]);
+  }, [activeTab, tabs]);
 
   React.useEffect(() => {
     if (tabs.length === 0) {
@@ -37,8 +37,8 @@ export function useTabs<K extends string>({
       return;
     }
 
-    setActiveTab(tabs[0]);
-  }, [activeIndex, activeTab, tabs]);
+    setActiveTab(defaultTab || tabs[0]);
+  }, [activeIndex, activeTab, defaultTab, tabs]);
 
   activeTabRef.current = activeTab;
 
