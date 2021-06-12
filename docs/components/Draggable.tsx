@@ -48,6 +48,7 @@ export function Draggable() {
             {({ isActive, onClick }) => (
               <TabSelector
                 isActive={isActive}
+                id={tab.id}
                 index={i}
                 moveTab={moveTab}
                 onClick={onClick}
@@ -82,20 +83,25 @@ interface DragItem {
 const TabSelector = ({
   isActive,
   children,
+  id,
   index,
   moveTab,
   onClick,
 }: {
   isActive: boolean;
   children: string;
+  id: number;
   index: number;
   moveTab: (dragIndex: number, hoverIndex: number) => void;
   onClick: () => void;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [, drop] = useDrop({
+  const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.TAB,
+    collect: monitor => ({
+      handlerId: monitor.getHandlerId(),
+    }),
     hover(item: DragItem, monitor: DropTargetMonitor) {
       if (!ref.current) {
         return;
@@ -149,8 +155,9 @@ const TabSelector = ({
 
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.TAB,
+    item: () => ({ id, index }),
     collect: monitor => ({
-      isDragging: !!monitor.isDragging(),
+      isDragging: monitor.isDragging(),
     }),
   });
 
@@ -163,6 +170,7 @@ const TabSelector = ({
           ? 'border-indigo-500 text-indigo-600 focus:outline-none focus:text-indigo-800 focus:border-indigo-700'
           : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300'
       } ${isDragging ? 'opacity-25' : 'opacity-100'}`}
+      data-handler-id={handlerId}
       onClick={onClick}
       ref={ref}
     >
