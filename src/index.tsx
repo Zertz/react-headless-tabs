@@ -75,22 +75,6 @@ export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
     []
   );
 
-  const tab = React.useCallback(
-    (
-      tabKey: K,
-      children: (props: {
-        isActive: boolean;
-        onClick: () => void;
-      }) => React.ReactElement
-    ) => {
-      return children({
-        isActive: activeTabRef.current === tabKey,
-        onClick: () => setActiveTab(tabKey),
-      });
-    },
-    []
-  );
-
   const TabPanel = React.useCallback(
     ({
       children,
@@ -114,7 +98,6 @@ export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
     activeIndex,
     activeTab,
     setActiveTab,
-    tab,
     Tab,
     TabPanel,
   };

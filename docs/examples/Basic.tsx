@@ -3,26 +3,25 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Basic() {
-  const { tab, Tab, TabPanel } = useTabs([
-    'account',
-    'company',
-    'team',
-    'billing',
-  ]);
+  const { Tab, TabPanel } = useTabs(['account', 'company', 'team', 'billing']);
 
   return (
     <>
       <nav className="flex border-b border-gray-300">
-        {tab('account', ({ isActive, onClick }) => (
-          <TabSelector isActive={isActive} onClick={onClick}>
-            My Account
-          </TabSelector>
-        ))}
-        {tab('company', ({ isActive, onClick }) => (
-          <TabSelector isActive={isActive} onClick={onClick}>
-            Company
-          </TabSelector>
-        ))}
+        <Tab tabKey="account">
+          {({ isActive, onClick }) => (
+            <TabSelector isActive={isActive} onClick={onClick}>
+              My Account
+            </TabSelector>
+          )}
+        </Tab>
+        <Tab tabKey="company">
+          {({ isActive, onClick }) => (
+            <TabSelector isActive={isActive} onClick={onClick}>
+              Company
+            </TabSelector>
+          )}
+        </Tab>
         <Tab tabKey="team">
           {({ isActive, onClick }) => (
             <TabSelector isActive={isActive} onClick={onClick}>
