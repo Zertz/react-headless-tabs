@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
-import { Basic } from '../docs/components/Basic';
-import { Browser } from '../docs/components/Browser';
-import { Draggable } from '../docs/components/Draggable';
-import { Dropdown } from '../docs/components/Dropdown';
-import { Nested } from '../docs/components/Nested';
-import { Overflow } from '../docs/components/Overflow';
+import { Basic } from '../docs/examples/Basic';
+import { Browser } from '../docs/examples/Browser';
+import { Draggable } from '../docs/examples/Draggable';
+import { Dropdown } from '../docs/examples/Dropdown';
+import { Nested } from '../docs/examples/Nested';
+import { Overflow } from '../docs/examples/Overflow';
 
 describe('Basic', () => {
   it('renders without crashing', () => {

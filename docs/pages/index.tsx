@@ -1,13 +1,16 @@
 import Head from 'next/head';
 import * as React from 'react';
 import { useTabs } from '../../src';
-import { Basic } from '../components/Basic';
-import { Browser } from '../components/Browser';
-import { Draggable } from '../components/Draggable';
-import { Dropdown } from '../components/Dropdown';
+import { Basic } from '../examples/Basic';
+import { Browser } from '../examples/Browser';
+import { Draggable } from '../examples/Draggable';
+import { Dropdown } from '../examples/Dropdown';
 import { Example } from '../components/Example';
-import { Nested } from '../components/Nested';
-import { Overflow } from '../components/Overflow';
+import { Nested } from '../examples/Nested';
+import { Overflow } from '../examples/Overflow';
+import { Documentation } from '../components/Documentation';
+import { Examples } from '../components/Examples';
+import { Overview } from '../components/Overview';
 
 const baseClassName =
   'inline-flex items-center border-b-2 cursor-pointer mr-8 px-2 py-4 font-medium text-sm whitespace-no-wrap focus:outline-none focus:border-gray-300 focus:text-gray-400';
@@ -93,149 +96,13 @@ export default function Index() {
           </Tab>
         </nav>
         <TabPanel tabKey="overview">
-          {({ isActive }) => (
-            <div className="py-6 space-y-12" hidden={!isActive}>
-              <div>
-                <div className="flex items-end justify-between border-b border-solid border-gray-400 mb-4 pb-2">
-                  <h2 className="font-bold text-4xl text-center">Features</h2>
-                </div>
-                <ul className="space-y-2">
-                  <li>🌱 Under 1KB minified and gzipped</li>
-                  <li>🚛 Bring your own DOM!</li>
-                  <li>
-                    ✨ Correctly handles dynamic tabs, no more empty tab panels!
-                  </li>
-                  <li>
-                    🤹‍♂️ Well suited for complex use cases, like drag and drop!
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div className="flex items-end justify-between border-b border-solid border-gray-400 mb-4 pb-2">
-                  <h2 className="font-bold text-4xl text-center">
-                    Getting started
-                  </h2>
-                </div>
-                <pre className="bg-gray-800 p-2 rounded">
-                  <code>npm install react-headless-tabs</code>
-                </pre>
-              </div>
-            </div>
-          )}
+          {({ isActive }) => <Overview isActive={isActive} />}
         </TabPanel>
         <TabPanel tabKey="documentation">
-          {({ isActive }) => (
-            <div className="py-6 space-y-12" hidden={!isActive}>
-              <div>
-                <div className="flex items-end justify-between border-b border-solid border-gray-400 mb-4 pb-2">
-                  <h2 className="font-bold text-4xl text-center">API</h2>
-                </div>
-                <pre className="bg-gray-800 p-2 rounded">
-                  <code>{`const {
-  Tab,
-  TabPanel,
-  activeIndex,
-  activeTab,
-  setActiveTab,
-} = useTabs<K extends string>({
-  tabs: K[];
-  defaultTab?: K | null;
-})`}</code>
-                </pre>
-              </div>
-              <div className="divide-y divide-solid divide-gray-400 space-y-8">
-                <div className="space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>tabs</code>
-                  </pre>
-                  <p>
-                    [Required] An array of strings representing the list of
-                    tabs.
-                  </p>
-                </div>
-                <div className="pt-8 space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>defaultTab</code>
-                  </pre>
-                  <p>
-                    [Optional] The tab that should initially be selected{' '}
-                    <em>(defaults to the first one)</em>
-                  </p>
-                </div>
-                <div className="pt-8 space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>Tab</code>
-                  </pre>
-                  <p>
-                    [Recommended] Renderless component that returns a render
-                    function with <code>isActive</code> and <code>onClick</code>
-                  </p>
-                </div>
-                <div className="pt-8 space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>TabPanel</code>
-                  </pre>
-                </div>
-                <div className="pt-8 space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>activeIndex</code>
-                  </pre>
-                </div>
-                <div className="pt-8 space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>activeTab</code>
-                  </pre>
-                </div>
-                <div className="pt-8 space-y-2">
-                  <pre className="bg-gray-800 p-2 rounded">
-                    <code>setActiveTab</code>
-                  </pre>
-                </div>
-              </div>
-            </div>
-          )}
+          {({ isActive }) => <Documentation isActive={isActive} />}
         </TabPanel>
         <TabPanel tabKey="examples">
-          {({ isActive }) => (
-            <div className="py-6 space-y-12" hidden={!isActive}>
-              <Example
-                title="Basic"
-                url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Basic.tsx"
-              >
-                <Basic />
-              </Example>
-              <Example
-                title="Browser"
-                url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Browser.tsx"
-              >
-                <Browser />
-              </Example>
-              <Example
-                title="Draggable"
-                url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Draggable.tsx"
-              >
-                <Draggable />
-              </Example>
-              <Example
-                title="Dropdown"
-                url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Dropdown.tsx"
-              >
-                <Dropdown />
-              </Example>
-              <Example
-                title="Nested"
-                url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Nested.tsx"
-              >
-                <Nested />
-              </Example>
-              <Example
-                title="Overflow"
-                url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/components/Overflow.tsx"
-              >
-                <Overflow />
-              </Example>
-            </div>
-          )}
+          {({ isActive }) => <Examples isActive={isActive} />}
         </TabPanel>
       </main>
     </div>
