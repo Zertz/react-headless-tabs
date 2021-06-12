@@ -43,7 +43,7 @@ export default function Index() {
         <title>react-headless-tabs</title>
       </Head>
       <main className="max-w-3xl mx-auto p-2 w-full">
-        <p className="pb-8 text-center">
+        <div className="pb-8 text-center">
           <h1 className="font-extrabold mb-2 text-7xl text-center">
             react-headless-tabs
           </h1>
@@ -53,7 +53,7 @@ export default function Index() {
           >
             Contribute on GitHub
           </a>
-        </p>
+        </div>
         <nav className="flex border-b border-gray-400">
           <Tab tabKey="overview">
             {({ isActive, onClick }) => (
