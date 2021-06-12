@@ -3,10 +3,10 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Dropdown() {
-  const { activeTab, setActiveTab, Tab, TabPanel } = useTabs({
-    defaultTab: null,
-    tabs: ['account', 'company', 'team', 'billing'],
-  });
+  const { activeTab, setActiveTab, Tab, TabPanel } = useTabs(
+    ['account', 'company', 'team', 'billing'],
+    null
+  );
 
   return (
     <div className="relative">

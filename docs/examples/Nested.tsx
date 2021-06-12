@@ -3,17 +3,17 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Nested() {
-  const { Tab, TabPanel } = useTabs({
-    tabs: ['account', 'company'],
-  });
+  const { Tab, TabPanel } = useTabs(['account', 'company']);
 
-  const { Tab: AccountTab, TabPanel: AccountTabPanel } = useTabs({
-    tabs: ['profile', 'settings'],
-  });
+  const { Tab: AccountTab, TabPanel: AccountTabPanel } = useTabs([
+    'profile',
+    'settings',
+  ]);
 
-  const { Tab: CompanyTab, TabPanel: CompanyTabPanel } = useTabs({
-    tabs: ['team', 'billing'],
-  });
+  const { Tab: CompanyTab, TabPanel: CompanyTabPanel } = useTabs([
+    'team',
+    'billing',
+  ]);
 
   return (
     <>

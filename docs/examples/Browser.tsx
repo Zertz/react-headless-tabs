@@ -6,9 +6,7 @@ let tabCounter = 4;
 export function Browser() {
   const [tabs, setTabs] = React.useState(['Tab 1', 'Tab 2', 'Tab 3']);
 
-  const { activeIndex, setActiveTab, Tab, TabPanel } = useTabs({
-    tabs,
-  });
+  const { activeIndex, setActiveTab, Tab, TabPanel } = useTabs(tabs);
 
   return (
     <>

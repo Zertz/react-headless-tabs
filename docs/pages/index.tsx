@@ -27,10 +27,10 @@ export default function Index() {
     return window.location.hash.substring(1);
   }, []);
 
-  const { activeTab, Tab, TabPanel } = useTabs({
-    defaultTab,
-    tabs: ['overview', 'documentation', 'examples'],
-  });
+  const { activeTab, Tab, TabPanel } = useTabs(
+    ['overview', 'documentation', 'examples'],
+    defaultTab
+  );
 
   React.useEffect(() => {
     if (!activeTab) {

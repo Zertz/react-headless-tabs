@@ -3,9 +3,12 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Overflow() {
-  const { setActiveTab, Tab, TabPanel } = useTabs({
-    tabs: ['account', 'company', 'team', 'billing'],
-  });
+  const { setActiveTab, Tab, TabPanel } = useTabs([
+    'account',
+    'company',
+    'team',
+    'billing',
+  ]);
 
   return (
     <>

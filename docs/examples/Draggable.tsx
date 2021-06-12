@@ -24,9 +24,7 @@ export function Draggable() {
     },
   ]);
 
-  const { Tab, TabPanel } = useTabs({
-    tabs: tabs.map(({ id }) => id.toString()),
-  });
+  const { Tab, TabPanel } = useTabs(tabs.map(({ id }) => id.toString()));
 
   const moveTab = useCallback(
     (dragIndex: number, hoverIndex: number) => {

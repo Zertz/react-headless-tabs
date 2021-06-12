@@ -10,13 +10,7 @@ function usePrevious<T>(value: T) {
   return ref.current;
 }
 
-export function useTabs<K extends string>({
-  defaultTab,
-  tabs,
-}: {
-  defaultTab?: K | null;
-  tabs: K[];
-}) {
+export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
   const [activeTab, setActiveTab] = React.useState<K | null>();
   const activeTabRef = React.useRef(activeTab);
 
@@ -81,6 +75,22 @@ export function useTabs<K extends string>({
     []
   );
 
+  const tab = React.useCallback(
+    (
+      tabKey: K,
+      children: (props: {
+        isActive: boolean;
+        onClick: () => void;
+      }) => React.ReactElement
+    ) => {
+      return children({
+        isActive: activeTabRef.current === tabKey,
+        onClick: () => setActiveTab(tabKey),
+      });
+    },
+    []
+  );
+
   const TabPanel = React.useCallback(
     ({
       children,
@@ -104,6 +114,7 @@ export function useTabs<K extends string>({
     activeIndex,
     activeTab,
     setActiveTab,
+    tab,
     Tab,
     TabPanel,
   };

@@ -14,25 +14,24 @@ export function Documentation({ isActive }: { isActive: boolean }) {
   activeIndex,
   activeTab,
   setActiveTab,
-} = useTabs<K extends string>({
-  tabs: K[];
-  defaultTab?: K | null;
-})`}</code>
+} = useTabs(tabs, defaultTab?)`}</code>
         </pre>
       </div>
       <div className="divide-y divide-solid divide-gray-400 space-y-8">
         <div className="space-y-2">
           <pre className="bg-gray-800 p-2 rounded">
-            <code>tabs</code>
+            <code>tabs: string[]</code>
           </pre>
-          <p>[Required] An array of strings representing the list of tabs.</p>
+          <p>
+            Strings representing the list of tabs, can be static or dynamic.
+          </p>
         </div>
         <div className="pt-8 space-y-2">
           <pre className="bg-gray-800 p-2 rounded">
-            <code>defaultTab</code>
+            <code>defaultTab?: string | null</code>
           </pre>
           <p>
-            [Optional] The tab that should initially be selected{' '}
+            The tab that should initially be selected{' '}
             <em>(defaults to the first one)</em>
           </p>
         </div>
@@ -41,8 +40,7 @@ export function Documentation({ isActive }: { isActive: boolean }) {
             <code>Tab</code>
           </pre>
           <p>
-            [Recommended] Renderless component that returns a render function
-            with <code>isActive</code> and <code>onClick</code>
+            Render function with <code>isActive</code> and <code>onClick</code>
           </p>
         </div>
         <div className="pt-8 space-y-2">
