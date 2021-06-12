@@ -8,15 +8,19 @@ export function Draggable() {
   const [tabs, setTabs] = useState([
     {
       id: 1,
-      text: 'Draggable tab 1',
+      text: 'My Account',
     },
     {
       id: 2,
-      text: 'Draggable tab 2',
+      text: 'Company',
     },
     {
       id: 3,
-      text: 'Draggable tab 3',
+      text: 'Team Members',
+    },
+    {
+      id: 4,
+      text: 'Billing',
     },
   ]);
 
@@ -59,10 +63,10 @@ export function Draggable() {
           </Tab>
         ))}
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow p-4">
         {tabs.map(tab => (
           <TabPanel key={tab.id} tabKey={tab.id.toString()}>
-            {tab.text}
+            {({ isActive }) => <div hidden={!isActive}>{tab.text}</div>}
           </TabPanel>
         ))}
       </div>

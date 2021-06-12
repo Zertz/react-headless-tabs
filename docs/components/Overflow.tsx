@@ -36,18 +36,20 @@ export function Overflow() {
           <option value="billing">Billing</option>
         </select>
       </nav>
-      <TabPanel className="p-4" tabKey="account">
-        My Account
-      </TabPanel>
-      <TabPanel className="p-4" tabKey="company">
-        Company
-      </TabPanel>
-      <TabPanel className="p-4" tabKey="team">
-        Team Members
-      </TabPanel>
-      <TabPanel className="p-4" tabKey="billing">
-        Billing
-      </TabPanel>
+      <div className="p-4">
+        <TabPanel tabKey="account">
+          {({ isActive }) => <div hidden={!isActive}>My Account</div>}
+        </TabPanel>
+        <TabPanel tabKey="company">
+          {({ isActive }) => <div hidden={!isActive}>Company</div>}
+        </TabPanel>
+        <TabPanel tabKey="team">
+          {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
+        </TabPanel>
+        <TabPanel tabKey="billing">
+          {({ isActive }) => <div hidden={!isActive}>Billing</div>}
+        </TabPanel>
+      </div>
     </>
   );
 }

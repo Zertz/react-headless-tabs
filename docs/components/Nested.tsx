@@ -33,60 +33,70 @@ export function Nested() {
           )}
         </Tab>
       </nav>
-      <TabPanel className="p-4" tabKey="account">
-        My Account
-        <>
-          <nav className="flex border-b border-gray-300">
-            <AccountTab tabKey="profile">
-              {({ isActive, onClick }) => (
-                <TabSelector isActive={isActive} onClick={onClick}>
-                  Profile
-                </TabSelector>
-              )}
-            </AccountTab>
-            <AccountTab tabKey="settings">
-              {({ isActive, onClick }) => (
-                <TabSelector isActive={isActive} onClick={onClick}>
-                  Settings
-                </TabSelector>
-              )}
-            </AccountTab>
-          </nav>
-          <AccountTabPanel className="p-4" tabKey="profile">
-            Profile
-          </AccountTabPanel>
-          <AccountTabPanel className="p-4" tabKey="settings">
-            Settings
-          </AccountTabPanel>
-        </>
-      </TabPanel>
-      <TabPanel className="p-4" tabKey="company">
-        Company
-        <>
-          <nav className="flex border-b border-gray-300">
-            <CompanyTab tabKey="team">
-              {({ isActive, onClick }) => (
-                <TabSelector isActive={isActive} onClick={onClick}>
-                  Team Members
-                </TabSelector>
-              )}
-            </CompanyTab>
-            <CompanyTab tabKey="billing">
-              {({ isActive, onClick }) => (
-                <TabSelector isActive={isActive} onClick={onClick}>
-                  Billing
-                </TabSelector>
-              )}
-            </CompanyTab>
-          </nav>
-          <CompanyTabPanel className="p-4" tabKey="team">
-            Team Members
-          </CompanyTabPanel>
-          <CompanyTabPanel className="p-4" tabKey="billing">
-            Billing
-          </CompanyTabPanel>
-        </>
-      </TabPanel>
+      <div className="p-4">
+        <TabPanel tabKey="account">
+          {({ isActive }) => (
+            <div hidden={!isActive}>
+              My Account
+              <nav className="flex border-b border-gray-300">
+                <AccountTab tabKey="profile">
+                  {({ isActive, onClick }) => (
+                    <TabSelector isActive={isActive} onClick={onClick}>
+                      Profile
+                    </TabSelector>
+                  )}
+                </AccountTab>
+                <AccountTab tabKey="settings">
+                  {({ isActive, onClick }) => (
+                    <TabSelector isActive={isActive} onClick={onClick}>
+                      Settings
+                    </TabSelector>
+                  )}
+                </AccountTab>
+              </nav>
+              <div className="p-4">
+                <AccountTabPanel tabKey="profile">
+                  {({ isActive }) => <div hidden={!isActive}>Profile</div>}
+                </AccountTabPanel>
+                <AccountTabPanel tabKey="settings">
+                  {({ isActive }) => <div hidden={!isActive}>Settings</div>}
+                </AccountTabPanel>
+              </div>
+            </div>
+          )}
+        </TabPanel>
+        <TabPanel tabKey="company">
+          {({ isActive }) => (
+            <div hidden={!isActive}>
+              Company
+              <nav className="flex border-b border-gray-300">
+                <CompanyTab tabKey="team">
+                  {({ isActive, onClick }) => (
+                    <TabSelector isActive={isActive} onClick={onClick}>
+                      Team Members
+                    </TabSelector>
+                  )}
+                </CompanyTab>
+                <CompanyTab tabKey="billing">
+                  {({ isActive, onClick }) => (
+                    <TabSelector isActive={isActive} onClick={onClick}>
+                      Billing
+                    </TabSelector>
+                  )}
+                </CompanyTab>
+              </nav>
+              <div className="p-4">
+                <CompanyTabPanel tabKey="team">
+                  {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
+                </CompanyTabPanel>
+                <CompanyTabPanel tabKey="billing">
+                  {({ isActive }) => <div hidden={!isActive}>Billing</div>}
+                </CompanyTabPanel>
+              </div>
+            </div>
+          )}
+        </TabPanel>
+      </div>
     </>
   );
 }

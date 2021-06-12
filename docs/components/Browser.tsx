@@ -54,11 +54,15 @@ export function Browser() {
           </button>
         </li>
       </ul>
-      {tabs.map(tab => (
-        <TabPanel key={tab} className="p-4" tabKey={tab}>
-          {`Panel ${tab.split(' ')[1]}`}
-        </TabPanel>
-      ))}
+      <div className="p-4">
+        {tabs.map(tab => (
+          <TabPanel key={tab} tabKey={tab}>
+            {({ isActive }) => (
+              <div hidden={!isActive}>{`Panel ${tab.split(' ')[1]}`}</div>
+            )}
+          </TabPanel>
+        ))}
+      </div>
       <span className="relative z-0 inline-flex shadow-sm mt-4">
         <button
           type="button"
@@ -114,6 +118,8 @@ const TabSelector = ({
           : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300'
       }`}
       onClick={onClick}
+      role="tab"
+      aria-selected={isActive ? 'true' : 'false'}
     >
       {children}
     </button>

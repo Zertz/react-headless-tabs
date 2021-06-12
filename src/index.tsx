@@ -1,6 +1,14 @@
 import * as React from 'react';
 
-type Div = React.HTMLAttributes<HTMLDivElement>;
+function usePrevious<T>(value: T) {
+  const ref = React.useRef<T>();
+
+  React.useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+}
 
 export function useTabs<K extends string>({
   defaultTab,
@@ -9,7 +17,7 @@ export function useTabs<K extends string>({
   defaultTab?: K | null;
   tabs: K[];
 }) {
-  const [activeTab, setActiveTab] = React.useState<K>();
+  const [activeTab, setActiveTab] = React.useState<K | null>();
   const activeTabRef = React.useRef(activeTab);
 
   const activeIndex = React.useMemo(() => {
@@ -20,9 +28,11 @@ export function useTabs<K extends string>({
     return -1;
   }, [activeTab, tabs]);
 
+  const previousActiveIndex = usePrevious(activeIndex);
+
   React.useEffect(() => {
     if (tabs.length === 0) {
-      setActiveTab(undefined);
+      setActiveTab(null);
 
       return;
     }
@@ -31,14 +41,24 @@ export function useTabs<K extends string>({
       return;
     }
 
-    if (activeIndex >= 0 && (tabs[activeIndex] || tabs[activeIndex - 1])) {
-      setActiveTab(tabs[activeIndex] || tabs[activeIndex - 1]);
+    if (
+      typeof previousActiveIndex === 'number' &&
+      previousActiveIndex >= 0 &&
+      (tabs[previousActiveIndex] || tabs[previousActiveIndex - 1])
+    ) {
+      setActiveTab(tabs[previousActiveIndex] || tabs[previousActiveIndex - 1]);
 
       return;
     }
 
-    setActiveTab(defaultTab || tabs[0]);
-  }, [activeIndex, activeTab, defaultTab, tabs]);
+    if (defaultTab === null) {
+      return;
+    }
+
+    setActiveTab(
+      defaultTab && tabs.includes(defaultTab) ? defaultTab : tabs[0]
+    );
+  }, [activeTab, defaultTab, tabs]);
 
   activeTabRef.current = activeTab;
 
@@ -50,30 +70,30 @@ export function useTabs<K extends string>({
       children: (props: {
         isActive: boolean;
         onClick: () => void;
-      }) => React.ReactNode;
+      }) => React.ReactElement;
       tabKey: K;
     }) => {
-      return (
-        <>
-          {children({
-            isActive: activeTabRef.current === tabKey,
-            onClick: () => setActiveTab(tabKey),
-          })}
-        </>
-      );
+      return children({
+        isActive: activeTabRef.current === tabKey,
+        onClick: () => setActiveTab(tabKey),
+      });
     },
     []
   );
 
   const TabPanel = React.useCallback(
     ({
+      children,
       mode = 'lazy',
       tabKey,
-      ...rest
-    }: { mode?: 'eager' | 'lazy'; tabKey: K } & Div) => (
+    }: {
+      children: (props: { isActive: boolean }) => React.ReactElement;
+      mode?: 'eager' | 'lazy';
+      tabKey: K;
+    }) => (
       <InternalTabPanel
-        {...rest}
         active={activeTabRef.current === tabKey}
+        children={children}
         mode={mode}
       />
     ),
@@ -93,11 +113,11 @@ function InternalTabPanel({
   active,
   children,
   mode,
-  ...rest
 }: {
   active: boolean;
+  children: (props: { isActive: boolean }) => React.ReactElement;
   mode: 'eager' | 'lazy';
-} & Div) {
+}) {
   const [shouldRender, setShouldRender] = React.useState(mode === 'eager');
 
   React.useEffect(() => {
@@ -108,9 +128,5 @@ function InternalTabPanel({
     setShouldRender(true);
   }, [active]);
 
-  return (
-    <div {...rest} hidden={!active}>
-      {shouldRender ? children : null}
-    </div>
-  );
+  return shouldRender ? children({ isActive: active }) : null;
 }

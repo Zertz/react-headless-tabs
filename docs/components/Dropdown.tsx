@@ -41,24 +41,24 @@ export function Dropdown() {
         </Tab>
       </nav>
       <div
-        className="absolute left-0 ml-4 w-full border border-t-0 border-gray-300 max-w-lg bg-gray-100 transition-transform origin-top duration-100 ease-in-out"
+        className="absolute left-0 ml-4 p-4 w-full border border-t-0 border-gray-300 max-w-lg bg-gray-100 transition-transform origin-top duration-100 ease-in-out"
         style={{ transform: activeTab ? 'scaleY(1)' : 'scaleY(0)' }}
       >
-        <TabPanel className="p-4" tabKey="account">
-          My Account
+        <TabPanel tabKey="account">
+          {({ isActive }) => <div hidden={!isActive}>My Account</div>}
         </TabPanel>
-        <TabPanel className="p-4" tabKey="company">
-          Company
+        <TabPanel tabKey="company">
+          {({ isActive }) => <div hidden={!isActive}>Company</div>}
         </TabPanel>
-        <TabPanel className="p-4" tabKey="team">
-          Team Members
+        <TabPanel tabKey="team">
+          {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
         </TabPanel>
-        <TabPanel className="p-4" tabKey="billing">
-          Billing
+        <TabPanel tabKey="billing">
+          {({ isActive }) => <div hidden={!isActive}>Billing</div>}
         </TabPanel>
         <button
           className="absolute top-0 right-0 mt-2 mr-2 text-gray-600"
-          onClick={() => setActiveTab(undefined)}
+          onClick={() => setActiveTab(null)}
         >
           Close
         </button>
