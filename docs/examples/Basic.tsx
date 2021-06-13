@@ -3,53 +3,46 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Basic() {
-  const { Tab, TabPanel } = useTabs(['account', 'company', 'team', 'billing']);
+  const { activeTab, setActiveTab, TabPanel } = useTabs([
+    'account',
+    'company',
+    'team',
+    'billing',
+  ]);
 
   return (
     <>
       <nav className="flex border-b border-gray-300">
-        <Tab tabKey="account">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              My Account
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="company">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Company
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="team">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Team Members
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="billing">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Billing
-            </TabSelector>
-          )}
-        </Tab>
+        <TabSelector
+          isActive={activeTab === 'account'}
+          onClick={() => setActiveTab('account')}
+        >
+          My Account
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'company'}
+          onClick={() => setActiveTab('company')}
+        >
+          Company
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'team'}
+          onClick={() => setActiveTab('team')}
+        >
+          Team Members
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'billing'}
+          onClick={() => setActiveTab('billing')}
+        >
+          Billing
+        </TabSelector>
       </nav>
       <div className="p-4">
-        <TabPanel tabKey="account">
-          {({ isActive }) => <div hidden={!isActive}>My Account</div>}
-        </TabPanel>
-        <TabPanel tabKey="company">
-          {({ isActive }) => <div hidden={!isActive}>Company</div>}
-        </TabPanel>
-        <TabPanel tabKey="team">
-          {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
-        </TabPanel>
-        <TabPanel tabKey="billing">
-          {({ isActive }) => <div hidden={!isActive}>Billing</div>}
-        </TabPanel>
+        <TabPanel tabKey="account">My Account</TabPanel>
+        <TabPanel tabKey="company">Company</TabPanel>
+        <TabPanel tabKey="team">Team Members</TabPanel>
+        <TabPanel tabKey="billing">Billing</TabPanel>
       </div>
     </>
   );

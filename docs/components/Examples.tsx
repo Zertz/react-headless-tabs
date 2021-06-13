@@ -7,9 +7,9 @@ import { Dropdown } from '../examples/Dropdown';
 import { Nested } from '../examples/Nested';
 import { Overflow } from '../examples/Overflow';
 
-export function Examples({ isActive }: { isActive: boolean }) {
+export function Examples() {
   return (
-    <div className="py-6 space-y-12" hidden={!isActive}>
+    <>
       <Example
         title="Basic"
         url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Basic.tsx"
@@ -46,6 +46,6 @@ export function Examples({ isActive }: { isActive: boolean }) {
       >
         <Overflow />
       </Example>
-    </div>
+    </>
   );
 }

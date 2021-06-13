@@ -3,7 +3,7 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Overflow() {
-  const { setActiveTab, Tab, TabPanel } = useTabs([
+  const { activeTab, setActiveTab, TabPanel } = useTabs([
     'account',
     'company',
     'team',
@@ -13,20 +13,18 @@ export function Overflow() {
   return (
     <>
       <nav className="flex border-b border-gray-300">
-        <Tab tabKey="account">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              My Account
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="company">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Company
-            </TabSelector>
-          )}
-        </Tab>
+        <TabSelector
+          isActive={activeTab === 'account'}
+          onClick={() => setActiveTab('account')}
+        >
+          My Account
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'company'}
+          onClick={() => setActiveTab('company')}
+        >
+          Company
+        </TabSelector>
         <select
           className="form-select pl-2 py-2 pr-4 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
           onChange={({ target: { value } }) =>
@@ -40,18 +38,10 @@ export function Overflow() {
         </select>
       </nav>
       <div className="p-4">
-        <TabPanel tabKey="account">
-          {({ isActive }) => <div hidden={!isActive}>My Account</div>}
-        </TabPanel>
-        <TabPanel tabKey="company">
-          {({ isActive }) => <div hidden={!isActive}>Company</div>}
-        </TabPanel>
-        <TabPanel tabKey="team">
-          {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
-        </TabPanel>
-        <TabPanel tabKey="billing">
-          {({ isActive }) => <div hidden={!isActive}>Billing</div>}
-        </TabPanel>
+        <TabPanel tabKey="account">My Account</TabPanel>
+        <TabPanel tabKey="company">Company</TabPanel>
+        <TabPanel tabKey="team">Team Members</TabPanel>
+        <TabPanel tabKey="billing">Billing</TabPanel>
       </div>
     </>
   );

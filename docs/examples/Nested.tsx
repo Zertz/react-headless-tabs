@@ -3,98 +3,78 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Nested() {
-  const { Tab, TabPanel } = useTabs(['account', 'company']);
+  const { activeTab, setActiveTab, TabPanel } = useTabs(['account', 'company']);
 
-  const { Tab: AccountTab, TabPanel: AccountTabPanel } = useTabs([
-    'profile',
-    'settings',
-  ]);
+  const {
+    activeTab: accountActiveTab,
+    setActiveTab: setAccountActiveTab,
+    TabPanel: AccountTabPanel,
+  } = useTabs(['profile', 'settings']);
 
-  const { Tab: CompanyTab, TabPanel: CompanyTabPanel } = useTabs([
-    'team',
-    'billing',
-  ]);
+  const {
+    activeTab: companyActiveTab,
+    setActiveTab: setCompanyActiveTab,
+    TabPanel: CompanyTabPanel,
+  } = useTabs(['team', 'billing']);
 
   return (
     <>
       <nav className="flex border-b border-gray-300">
-        <Tab tabKey="account">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              My Account
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="company">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Company
-            </TabSelector>
-          )}
-        </Tab>
+        <TabSelector
+          isActive={activeTab === 'account'}
+          onClick={() => setActiveTab('account')}
+        >
+          My Account
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'company'}
+          onClick={() => setActiveTab('company')}
+        >
+          Company
+        </TabSelector>
       </nav>
       <div className="p-4">
         <TabPanel tabKey="account">
-          {({ isActive }) => (
-            <div hidden={!isActive}>
-              My Account
-              <nav className="flex border-b border-gray-300">
-                <AccountTab tabKey="profile">
-                  {({ isActive, onClick }) => (
-                    <TabSelector isActive={isActive} onClick={onClick}>
-                      Profile
-                    </TabSelector>
-                  )}
-                </AccountTab>
-                <AccountTab tabKey="settings">
-                  {({ isActive, onClick }) => (
-                    <TabSelector isActive={isActive} onClick={onClick}>
-                      Settings
-                    </TabSelector>
-                  )}
-                </AccountTab>
-              </nav>
-              <div className="p-4">
-                <AccountTabPanel tabKey="profile">
-                  {({ isActive }) => <div hidden={!isActive}>Profile</div>}
-                </AccountTabPanel>
-                <AccountTabPanel tabKey="settings">
-                  {({ isActive }) => <div hidden={!isActive}>Settings</div>}
-                </AccountTabPanel>
-              </div>
-            </div>
-          )}
+          My Account
+          <nav className="flex border-b border-gray-300">
+            <TabSelector
+              isActive={accountActiveTab === 'profile'}
+              onClick={() => setAccountActiveTab('profile')}
+            >
+              Profile
+            </TabSelector>
+            <TabSelector
+              isActive={accountActiveTab === 'settings'}
+              onClick={() => setAccountActiveTab('settings')}
+            >
+              Settings
+            </TabSelector>
+          </nav>
+          <div className="p-4">
+            <AccountTabPanel tabKey="profile">Profile</AccountTabPanel>
+            <AccountTabPanel tabKey="settings">Settings</AccountTabPanel>
+          </div>
         </TabPanel>
         <TabPanel tabKey="company">
-          {({ isActive }) => (
-            <div hidden={!isActive}>
-              Company
-              <nav className="flex border-b border-gray-300">
-                <CompanyTab tabKey="team">
-                  {({ isActive, onClick }) => (
-                    <TabSelector isActive={isActive} onClick={onClick}>
-                      Team Members
-                    </TabSelector>
-                  )}
-                </CompanyTab>
-                <CompanyTab tabKey="billing">
-                  {({ isActive, onClick }) => (
-                    <TabSelector isActive={isActive} onClick={onClick}>
-                      Billing
-                    </TabSelector>
-                  )}
-                </CompanyTab>
-              </nav>
-              <div className="p-4">
-                <CompanyTabPanel tabKey="team">
-                  {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
-                </CompanyTabPanel>
-                <CompanyTabPanel tabKey="billing">
-                  {({ isActive }) => <div hidden={!isActive}>Billing</div>}
-                </CompanyTabPanel>
-              </div>
-            </div>
-          )}
+          Company
+          <nav className="flex border-b border-gray-300">
+            <TabSelector
+              isActive={companyActiveTab === 'team'}
+              onClick={() => setCompanyActiveTab('team')}
+            >
+              Team Members
+            </TabSelector>
+            <TabSelector
+              isActive={companyActiveTab === 'billing'}
+              onClick={() => setCompanyActiveTab('billing')}
+            >
+              Billing
+            </TabSelector>
+          </nav>
+          <div className="p-4">
+            <CompanyTabPanel tabKey="team">Team Members</CompanyTabPanel>
+            <CompanyTabPanel tabKey="billing">Billing</CompanyTabPanel>
+          </div>
         </TabPanel>
       </div>
     </>

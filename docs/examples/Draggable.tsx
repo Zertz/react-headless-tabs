@@ -7,24 +7,26 @@ import { useTabs } from '../../src';
 export function Draggable() {
   const [tabs, setTabs] = useState([
     {
-      id: 1,
+      id: '1',
       text: 'My Account',
     },
     {
-      id: 2,
+      id: '2',
       text: 'Company',
     },
     {
-      id: 3,
+      id: '3',
       text: 'Team Members',
     },
     {
-      id: 4,
+      id: '4',
       text: 'Billing',
     },
   ]);
 
-  const { Tab, TabPanel } = useTabs(tabs.map(({ id }) => id.toString()));
+  const { activeTab, setActiveTab, TabPanel } = useTabs(
+    tabs.map(({ id }) => id)
+  );
 
   const moveTab = useCallback(
     (dragIndex: number, hoverIndex: number) => {
@@ -46,25 +48,22 @@ export function Draggable() {
     <DndProvider backend={HTML5Backend}>
       <div className="flex flex-col">
         {tabs.map((tab, i) => (
-          <Tab key={tab.id} tabKey={tab.id.toString()}>
-            {({ isActive, onClick }) => (
-              <TabSelector
-                isActive={isActive}
-                id={tab.id}
-                index={i}
-                moveTab={moveTab}
-                onClick={onClick}
-              >
-                {tab.text}
-              </TabSelector>
-            )}
-          </Tab>
+          <TabSelector
+            key={tab.id}
+            isActive={activeTab === tab.id}
+            id={tab.id}
+            index={i}
+            moveTab={moveTab}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            {tab.text}
+          </TabSelector>
         ))}
       </div>
       <div className="flex-grow p-4">
         {tabs.map(tab => (
-          <TabPanel key={tab.id} tabKey={tab.id.toString()}>
-            {({ isActive }) => <div hidden={!isActive}>{tab.text}</div>}
+          <TabPanel key={tab.id} tabKey={tab.id}>
+            {tab.text}
           </TabPanel>
         ))}
       </div>
@@ -92,7 +91,7 @@ const TabSelector = ({
 }: {
   isActive: boolean;
   children: string;
-  id: number;
+  id: string;
   index: number;
   moveTab: (dragIndex: number, hoverIndex: number) => void;
   onClick: () => void;

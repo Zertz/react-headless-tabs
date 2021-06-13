@@ -3,7 +3,7 @@ import { useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Dropdown() {
-  const { activeTab, setActiveTab, Tab, TabPanel } = useTabs(
+  const { activeTab, setActiveTab, TabPanel } = useTabs(
     ['account', 'company', 'team', 'billing'],
     null
   );
@@ -11,51 +11,39 @@ export function Dropdown() {
   return (
     <div className="relative">
       <nav className="flex border-b border-gray-300">
-        <Tab tabKey="account">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              My Account
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="company">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Company
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="team">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Team Members
-            </TabSelector>
-          )}
-        </Tab>
-        <Tab tabKey="billing">
-          {({ isActive, onClick }) => (
-            <TabSelector isActive={isActive} onClick={onClick}>
-              Billing
-            </TabSelector>
-          )}
-        </Tab>
+        <TabSelector
+          isActive={activeTab === 'account'}
+          onClick={() => setActiveTab('account')}
+        >
+          My Account
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'company'}
+          onClick={() => setActiveTab('company')}
+        >
+          Company
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'team'}
+          onClick={() => setActiveTab('team')}
+        >
+          Team Members
+        </TabSelector>
+        <TabSelector
+          isActive={activeTab === 'billing'}
+          onClick={() => setActiveTab('billing')}
+        >
+          Billing
+        </TabSelector>
       </nav>
       <div
         className="absolute left-0 ml-4 p-4 w-full border border-t-0 border-gray-300 max-w-lg bg-gray-100 transition-transform origin-top duration-100 ease-in-out"
         style={{ transform: activeTab ? 'scaleY(1)' : 'scaleY(0)' }}
       >
-        <TabPanel tabKey="account">
-          {({ isActive }) => <div hidden={!isActive}>My Account</div>}
-        </TabPanel>
-        <TabPanel tabKey="company">
-          {({ isActive }) => <div hidden={!isActive}>Company</div>}
-        </TabPanel>
-        <TabPanel tabKey="team">
-          {({ isActive }) => <div hidden={!isActive}>Team Members</div>}
-        </TabPanel>
-        <TabPanel tabKey="billing">
-          {({ isActive }) => <div hidden={!isActive}>Billing</div>}
-        </TabPanel>
+        <TabPanel tabKey="account">My Account</TabPanel>
+        <TabPanel tabKey="company">Company</TabPanel>
+        <TabPanel tabKey="team">Team Members</TabPanel>
+        <TabPanel tabKey="billing">Billing</TabPanel>
         <button
           className="absolute top-0 right-0 mt-2 mr-2 text-gray-600"
           onClick={() => setActiveTab(null)}

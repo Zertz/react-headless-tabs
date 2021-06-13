@@ -1,13 +1,6 @@
 import Head from 'next/head';
 import * as React from 'react';
 import { useTabs } from '../../src';
-import { Basic } from '../examples/Basic';
-import { Browser } from '../examples/Browser';
-import { Draggable } from '../examples/Draggable';
-import { Dropdown } from '../examples/Dropdown';
-import { Example } from '../components/Example';
-import { Nested } from '../examples/Nested';
-import { Overflow } from '../examples/Overflow';
 import { Documentation } from '../components/Documentation';
 import { Examples } from '../components/Examples';
 import { Overview } from '../components/Overview';
@@ -27,7 +20,7 @@ export default function Index() {
     return window.location.hash.substring(1);
   }, []);
 
-  const { activeTab, Tab, TabPanel } = useTabs(
+  const { activeTab, setActiveTab, TabPanel } = useTabs(
     ['overview', 'documentation', 'examples'],
     defaultTab
   );
@@ -47,9 +40,7 @@ export default function Index() {
       </Head>
       <main className="max-w-3xl mx-auto p-2 w-full">
         <div className="pb-8 text-center">
-          <h1 className="font-extrabold mb-2 text-7xl text-center">
-            react-headless-tabs
-          </h1>
+          <h1 className="font-extrabold mb-2 text-7xl">react-headless-tabs</h1>
           <a
             className="font-light hover:text-gray-300 text-xl transition-colors underline"
             href="https://github.com/Zertz/react-headless-tabs"
@@ -58,51 +49,41 @@ export default function Index() {
           </a>
         </div>
         <nav className="flex border-b border-gray-400">
-          <Tab tabKey="overview">
-            {({ isActive, onClick }) => (
-              <button
-                className={`${baseClassName} ${
-                  isActive ? activeClassName : inactiveClassName
-                }`}
-                onClick={onClick}
-              >
-                Overview
-              </button>
-            )}
-          </Tab>
-          <Tab tabKey="documentation">
-            {({ isActive, onClick }) => (
-              <button
-                className={`${baseClassName} ${
-                  isActive ? activeClassName : inactiveClassName
-                }`}
-                onClick={onClick}
-              >
-                Documentation
-              </button>
-            )}
-          </Tab>
-          <Tab tabKey="examples">
-            {({ isActive, onClick }) => (
-              <button
-                className={`${baseClassName} ${
-                  isActive ? activeClassName : inactiveClassName
-                }`}
-                onClick={onClick}
-              >
-                Examples
-              </button>
-            )}
-          </Tab>
+          <button
+            className={`${baseClassName} ${
+              activeTab === 'overview' ? activeClassName : inactiveClassName
+            }`}
+            onClick={() => setActiveTab('overview')}
+          >
+            Overview
+          </button>
+          <button
+            className={`${baseClassName} ${
+              activeTab === 'documentation'
+                ? activeClassName
+                : inactiveClassName
+            }`}
+            onClick={() => setActiveTab('documentation')}
+          >
+            Documentation
+          </button>
+          <button
+            className={`${baseClassName} ${
+              activeTab === 'examples' ? activeClassName : inactiveClassName
+            }`}
+            onClick={() => setActiveTab('examples')}
+          >
+            Examples
+          </button>
         </nav>
-        <TabPanel tabKey="overview">
-          {({ isActive }) => <Overview isActive={isActive} />}
+        <TabPanel className="py-6 space-y-12" tabKey="overview">
+          <Overview />
         </TabPanel>
-        <TabPanel tabKey="documentation">
-          {({ isActive }) => <Documentation isActive={isActive} />}
+        <TabPanel className="py-6 space-y-12" tabKey="documentation">
+          <Documentation />
         </TabPanel>
-        <TabPanel tabKey="examples">
-          {({ isActive }) => <Examples isActive={isActive} />}
+        <TabPanel className="py-6 space-y-12" tabKey="examples">
+          <Examples />
         </TabPanel>
       </main>
     </div>
