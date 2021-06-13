@@ -6,25 +6,22 @@ let tabCounter = 4;
 export function Browser() {
   const [tabs, setTabs] = React.useState(['Tab 1', 'Tab 2', 'Tab 3']);
 
-  const { activeIndex, setActiveTab, Tab, TabPanel } = useTabs({
-    tabs,
-  });
+  const { activeTab, setActiveTab, TabPanel } = useTabs(tabs);
+
+  const activeIndex = activeTab ? tabs.indexOf(activeTab) : -1;
 
   return (
     <>
       <ul className="flex items-center border-b border-gray-300">
         {tabs.map(tab => (
-          <Tab key={tab} tabKey={tab}>
-            {({ isActive, onClick }) => (
-              <TabSelector
-                isActive={isActive}
-                onClick={onClick}
-                onClose={() => setTabs(tabs => tabs.filter(t => t !== tab))}
-              >
-                {tab}
-              </TabSelector>
-            )}
-          </Tab>
+          <TabSelector
+            key={tab}
+            isActive={activeTab === tab}
+            onClick={() => setActiveTab(tab)}
+            onClose={() => setTabs(tabs => tabs.filter(t => t !== tab))}
+          >
+            {tab}
+          </TabSelector>
         ))}
         <li className="py-2 inline-flex items-center">
           <button
@@ -54,17 +51,19 @@ export function Browser() {
           </button>
         </li>
       </ul>
-      {tabs.map(tab => (
-        <TabPanel key={tab} className="p-4" tabKey={tab}>
-          {`Panel ${tab.split(' ')[1]}`}
-        </TabPanel>
-      ))}
+      <div className="p-4">
+        {tabs.map(tab => (
+          <TabPanel key={tab} tabKey={tab}>
+            {`Panel ${tab.split(' ')[1]}`}
+          </TabPanel>
+        ))}
+      </div>
       <span className="relative z-0 inline-flex shadow-sm mt-4">
         <button
           type="button"
           className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
           aria-label="Previous"
-          disabled={activeIndex === 0}
+          disabled={tabs.length === 0 || activeIndex === 0}
           onClick={() => setActiveTab(tabs[activeIndex - 1])}
         >
           <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -79,7 +78,7 @@ export function Browser() {
           type="button"
           className="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
           aria-label="Next"
-          disabled={activeIndex === tabs.length - 1}
+          disabled={tabs.length === 0 || activeIndex === tabs.length - 1}
           onClick={() => setActiveTab(tabs[activeIndex + 1])}
         >
           <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -114,6 +113,8 @@ const TabSelector = ({
           : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300'
       }`}
       onClick={onClick}
+      role="tab"
+      aria-selected={isActive ? 'true' : 'false'}
     >
       {children}
     </button>
