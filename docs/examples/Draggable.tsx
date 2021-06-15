@@ -1,11 +1,11 @@
 import { XYCoord } from 'dnd-core';
-import React, { useCallback, useRef, useState } from 'react';
+import * as React from 'react';
 import { DndProvider, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useTabs } from '../../src';
+import { TabPanel, useTabs } from '../../src';
 
 export function Draggable() {
-  const [tabs, setTabs] = useState([
+  const [tabs, setTabs] = React.useState([
     {
       id: '1',
       text: 'My Account',
@@ -24,11 +24,9 @@ export function Draggable() {
     },
   ]);
 
-  const { activeTab, setActiveTab, TabPanel } = useTabs(
-    tabs.map(({ id }) => id)
-  );
+  const [selectedTab, setSelectedTab] = useTabs(tabs.map(({ id }) => id));
 
-  const moveTab = useCallback(
+  const moveTab = React.useCallback(
     (dragIndex: number, hoverIndex: number) => {
       const dragTab = tabs[dragIndex];
 
@@ -50,11 +48,11 @@ export function Draggable() {
         {tabs.map((tab, i) => (
           <TabSelector
             key={tab.id}
-            isActive={activeTab === tab.id}
+            isActive={selectedTab === tab.id}
             id={tab.id}
             index={i}
             moveTab={moveTab}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => setSelectedTab(tab.id)}
           >
             {tab.text}
           </TabSelector>
@@ -62,7 +60,7 @@ export function Draggable() {
       </div>
       <div className="flex-grow p-4">
         {tabs.map(tab => (
-          <TabPanel key={tab.id} tabKey={tab.id}>
+          <TabPanel key={tab.id} hidden={selectedTab !== tab.id}>
             {tab.text}
           </TabPanel>
         ))}
@@ -96,7 +94,7 @@ const TabSelector = ({
   moveTab: (dragIndex: number, hoverIndex: number) => void;
   onClick: () => void;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.TAB,

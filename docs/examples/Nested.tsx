@@ -1,79 +1,85 @@
 import * as React from 'react';
-import { useTabs } from '../../src';
+import { TabPanel, useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Nested() {
-  const { activeTab, setActiveTab, TabPanel } = useTabs(['account', 'company']);
+  const [selectedTab, setSelectedTab] = useTabs(['account', 'company']);
 
-  const {
-    activeTab: accountActiveTab,
-    setActiveTab: setAccountActiveTab,
-    TabPanel: AccountTabPanel,
-  } = useTabs(['profile', 'settings']);
+  const [selectedAccountTab, setSelectedAccountTab] = useTabs([
+    'profile',
+    'settings',
+  ]);
 
-  const {
-    activeTab: companyActiveTab,
-    setActiveTab: setCompanyActiveTab,
-    TabPanel: CompanyTabPanel,
-  } = useTabs(['team', 'billing']);
+  const [selectedCompanyTab, setSelectedCompanyTab] = useTabs([
+    'team',
+    'billing',
+  ]);
 
   return (
     <>
       <nav className="flex border-b border-gray-300">
         <TabSelector
-          isActive={activeTab === 'account'}
-          onClick={() => setActiveTab('account')}
+          isActive={selectedTab === 'account'}
+          onClick={() => setSelectedTab('account')}
         >
           My Account
         </TabSelector>
         <TabSelector
-          isActive={activeTab === 'company'}
-          onClick={() => setActiveTab('company')}
+          isActive={selectedTab === 'company'}
+          onClick={() => setSelectedTab('company')}
         >
           Company
         </TabSelector>
       </nav>
       <div className="p-4">
-        <TabPanel tabKey="account">
+        <TabPanel hidden={selectedTab !== 'account'}>
           My Account
           <nav className="flex border-b border-gray-300">
             <TabSelector
-              isActive={accountActiveTab === 'profile'}
-              onClick={() => setAccountActiveTab('profile')}
+              isActive={selectedAccountTab === 'profile'}
+              onClick={() => setSelectedAccountTab('profile')}
             >
               Profile
             </TabSelector>
             <TabSelector
-              isActive={accountActiveTab === 'settings'}
-              onClick={() => setAccountActiveTab('settings')}
+              isActive={selectedAccountTab === 'settings'}
+              onClick={() => setSelectedAccountTab('settings')}
             >
               Settings
             </TabSelector>
           </nav>
           <div className="p-4">
-            <AccountTabPanel tabKey="profile">Profile</AccountTabPanel>
-            <AccountTabPanel tabKey="settings">Settings</AccountTabPanel>
+            <TabPanel hidden={selectedAccountTab !== 'profile'}>
+              Profile
+            </TabPanel>
+            <TabPanel hidden={selectedAccountTab !== 'settings'}>
+              Settings
+            </TabPanel>
           </div>
         </TabPanel>
-        <TabPanel tabKey="company">
+        <TabPanel hidden={selectedTab !== 'company'}>
           Company
           <nav className="flex border-b border-gray-300">
             <TabSelector
-              isActive={companyActiveTab === 'team'}
-              onClick={() => setCompanyActiveTab('team')}
+              isActive={selectedCompanyTab === 'team'}
+              onClick={() => setSelectedCompanyTab('team')}
             >
               Team Members
             </TabSelector>
             <TabSelector
-              isActive={companyActiveTab === 'billing'}
-              onClick={() => setCompanyActiveTab('billing')}
+              isActive={selectedCompanyTab === 'billing'}
+              onClick={() => setSelectedCompanyTab('billing')}
             >
               Billing
             </TabSelector>
           </nav>
           <div className="p-4">
-            <CompanyTabPanel tabKey="team">Team Members</CompanyTabPanel>
-            <CompanyTabPanel tabKey="billing">Billing</CompanyTabPanel>
+            <TabPanel hidden={selectedCompanyTab !== 'team'}>
+              Team Members
+            </TabPanel>
+            <TabPanel hidden={selectedCompanyTab !== 'billing'}>
+              Billing
+            </TabPanel>
           </div>
         </TabPanel>
       </div>

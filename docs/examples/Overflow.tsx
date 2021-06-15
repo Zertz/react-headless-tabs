@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useTabs } from '../../src';
+import { TabPanel, useTabs } from '../../src';
 import { TabSelector } from './TabSelector';
 
 export function Overflow() {
-  const { activeTab, setActiveTab, TabPanel } = useTabs([
+  const [selectedTab, setSelectedTab] = useTabs([
     'account',
     'company',
     'team',
@@ -14,21 +14,21 @@ export function Overflow() {
     <>
       <nav className="flex border-b border-gray-300">
         <TabSelector
-          isActive={activeTab === 'account'}
-          onClick={() => setActiveTab('account')}
+          isActive={selectedTab === 'account'}
+          onClick={() => setSelectedTab('account')}
         >
           My Account
         </TabSelector>
         <TabSelector
-          isActive={activeTab === 'company'}
-          onClick={() => setActiveTab('company')}
+          isActive={selectedTab === 'company'}
+          onClick={() => setSelectedTab('company')}
         >
           Company
         </TabSelector>
         <select
           className="form-select pl-2 py-2 pr-4 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300"
           onChange={({ target: { value } }) =>
-            setActiveTab(value as 'team' | 'billing')
+            setSelectedTab(value as 'team' | 'billing')
           }
           value={0}
         >
@@ -38,10 +38,10 @@ export function Overflow() {
         </select>
       </nav>
       <div className="p-4">
-        <TabPanel tabKey="account">My Account</TabPanel>
-        <TabPanel tabKey="company">Company</TabPanel>
-        <TabPanel tabKey="team">Team Members</TabPanel>
-        <TabPanel tabKey="billing">Billing</TabPanel>
+        <TabPanel hidden={selectedTab !== 'account'}>My Account</TabPanel>
+        <TabPanel hidden={selectedTab !== 'company'}>Company</TabPanel>
+        <TabPanel hidden={selectedTab !== 'team'}>Team Members</TabPanel>
+        <TabPanel hidden={selectedTab !== 'billing'}>Billing</TabPanel>
       </div>
     </>
   );
