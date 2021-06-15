@@ -26,7 +26,7 @@ export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
 
   React.useEffect(() => {
     if (tabs.length === 0) {
-      setSelectedTab(null);
+      setSelectedTab(undefined);
 
       return;
     }
