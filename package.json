@@ -34,7 +34,7 @@
   "author": "Pier-Luc Gendreau",
   "module": "dist/react-headless-tabs.esm.js",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
+    "@babel/core": "^7.14.6",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@types/react": "^17.0.11",
