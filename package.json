@@ -27,6 +27,7 @@
     "trailingComma": "es5"
   },
   "name": "react-headless-tabs",
+  "private": true,
   "workspaces": [
     "docs"
   ],
