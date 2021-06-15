@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import * as React from 'react';
-import { useTabs } from '../../src';
+import { TabPanel, useTabs } from '../../src';
 import { Documentation } from '../components/Documentation';
 import { Examples } from '../components/Examples';
 import { Overview } from '../components/Overview';
@@ -20,18 +20,18 @@ export default function Index() {
     return window.location.hash.substring(1);
   }, []);
 
-  const { activeTab, setActiveTab, TabPanel } = useTabs(
+  const [selectedTab, setSelectedTab] = useTabs(
     ['overview', 'documentation', 'examples'],
     defaultTab
   );
 
   React.useEffect(() => {
-    if (!activeTab) {
+    if (!selectedTab) {
       return;
     }
 
-    window.location.hash = activeTab;
-  }, [activeTab]);
+    window.location.hash = selectedTab;
+  }, [selectedTab]);
 
   return (
     <div className="flex flex-col bg-gray-700 min-h-screen text-gray-200 w-full">
@@ -51,38 +51,47 @@ export default function Index() {
         <nav className="flex border-b border-gray-400">
           <button
             className={`${baseClassName} ${
-              activeTab === 'overview' ? activeClassName : inactiveClassName
+              selectedTab === 'overview' ? activeClassName : inactiveClassName
             }`}
-            onClick={() => setActiveTab('overview')}
+            onClick={() => setSelectedTab('overview')}
           >
             Overview
           </button>
           <button
             className={`${baseClassName} ${
-              activeTab === 'documentation'
+              selectedTab === 'documentation'
                 ? activeClassName
                 : inactiveClassName
             }`}
-            onClick={() => setActiveTab('documentation')}
+            onClick={() => setSelectedTab('documentation')}
           >
             Documentation
           </button>
           <button
             className={`${baseClassName} ${
-              activeTab === 'examples' ? activeClassName : inactiveClassName
+              selectedTab === 'examples' ? activeClassName : inactiveClassName
             }`}
-            onClick={() => setActiveTab('examples')}
+            onClick={() => setSelectedTab('examples')}
           >
             Examples
           </button>
         </nav>
-        <TabPanel className="py-6 space-y-12" tabKey="overview">
+        <TabPanel
+          className="py-6 space-y-12"
+          hidden={selectedTab !== 'overview'}
+        >
           <Overview />
         </TabPanel>
-        <TabPanel className="py-6 space-y-12" tabKey="documentation">
+        <TabPanel
+          className="py-6 space-y-12"
+          hidden={selectedTab !== 'documentation'}
+        >
           <Documentation />
         </TabPanel>
-        <TabPanel className="py-6 space-y-12" tabKey="examples">
+        <TabPanel
+          className="py-6 space-y-12"
+          hidden={selectedTab !== 'examples'}
+        >
           <Examples />
         </TabPanel>
       </main>

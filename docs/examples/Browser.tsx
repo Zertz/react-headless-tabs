@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { useTabs } from '../../src';
+import { TabPanel, useTabs } from '../../src';
 
 let tabCounter = 4;
 
 export function Browser() {
   const [tabs, setTabs] = React.useState(['Tab 1', 'Tab 2', 'Tab 3']);
 
-  const { activeTab, setActiveTab, TabPanel } = useTabs(tabs);
+  const [selectedTab, setSelectedTab] = useTabs(tabs);
 
-  const activeIndex = activeTab ? tabs.indexOf(activeTab) : -1;
+  const activeIndex = selectedTab ? tabs.indexOf(selectedTab) : -1;
 
   return (
     <>
@@ -16,8 +16,8 @@ export function Browser() {
         {tabs.map(tab => (
           <TabSelector
             key={tab}
-            isActive={activeTab === tab}
-            onClick={() => setActiveTab(tab)}
+            isActive={selectedTab === tab}
+            onClick={() => setSelectedTab(tab)}
             onClose={() => setTabs(tabs => tabs.filter(t => t !== tab))}
           >
             {tab}
@@ -30,7 +30,7 @@ export function Browser() {
               const newTab = `Tab ${tabCounter++}`;
 
               setTabs(tabs => tabs.concat(newTab));
-              setActiveTab(newTab);
+              setSelectedTab(newTab);
             }}
             title="New tab"
           >
@@ -53,7 +53,7 @@ export function Browser() {
       </ul>
       <div className="p-4">
         {tabs.map(tab => (
-          <TabPanel key={tab} tabKey={tab}>
+          <TabPanel key={tab} hidden={selectedTab !== tab}>
             {`Panel ${tab.split(' ')[1]}`}
           </TabPanel>
         ))}
@@ -64,7 +64,7 @@ export function Browser() {
           className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
           aria-label="Previous"
           disabled={tabs.length === 0 || activeIndex === 0}
-          onClick={() => setActiveTab(tabs[activeIndex - 1])}
+          onClick={() => setSelectedTab(tabs[activeIndex - 1])}
         >
           <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -79,7 +79,7 @@ export function Browser() {
           className="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
           aria-label="Next"
           disabled={tabs.length === 0 || activeIndex === tabs.length - 1}
-          onClick={() => setActiveTab(tabs[activeIndex + 1])}
+          onClick={() => setSelectedTab(tabs[activeIndex + 1])}
         >
           <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
