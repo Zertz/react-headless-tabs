@@ -1,20 +1,5 @@
 import * as React from 'react';
-
-function CodeBlock({ children }: { children: string }) {
-  return (
-    <pre className="bg-gray-800 p-2 rounded">
-      <code>{children}</code>
-    </pre>
-  );
-}
-
-function Code({ children }: { children: string }) {
-  return (
-    <pre className="inline bg-gray-800 px-1 py-0.5 rounded">
-      <code>{children}</code>
-    </pre>
-  );
-}
+import { Code, CodeBlock } from './Code';
 
 export function Documentation() {
   return (
@@ -71,7 +56,7 @@ export function Documentation() {
         </div>
         <div className="divide-y divide-solid divide-gray-400 space-y-8">
           <div className="space-y-2">
-            <CodeBlock>{`<TabPanel hidden={selectedTab === "cats"}>The internet is made of cats.</TabPanel>`}</CodeBlock>
+            <CodeBlock>{`<TabPanel hidden={selectedTab !== "cats"}>The internet is for cats.</TabPanel>`}</CodeBlock>
             <p>
               This component provides lazy rendering, meaning its children won't
               be rendered until the tab has been selected. When the selected tab

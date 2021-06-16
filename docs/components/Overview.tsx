@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CodeBlock } from './Code';
 
 export function Overview() {
   return (
@@ -18,9 +19,7 @@ export function Overview() {
         <div className="flex items-end justify-between border-b border-solid border-gray-400 mb-4 pb-2">
           <h2 className="font-bold text-4xl">Getting started</h2>
         </div>
-        <pre className="bg-gray-800 p-2 rounded">
-          <code>npm install react-headless-tabs</code>
-        </pre>
+        <CodeBlock>npm install react-headless-tabs</CodeBlock>
       </div>
     </>
   );

@@ -18,7 +18,9 @@ export function Example({
           View source
         </a>
       </div>
-      <div className="bg-gray-200 p-2 rounded text-gray-700">{children}</div>
+      <div className="bg-gray-200 overflow-x-auto p-2 rounded text-gray-700">
+        {children}
+      </div>
     </div>
   );
 }
