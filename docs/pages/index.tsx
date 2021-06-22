@@ -38,7 +38,7 @@ export default function Index() {
       <Head>
         <title>react-headless-tabs</title>
       </Head>
-      <main className="max-w-3xl mx-auto p-2 w-full">
+      <main className="max-w-4xl mx-auto p-2 w-full">
         <div className="pb-8 text-center">
           <h1 className="font-extrabold mb-2 text-4xl sm:text-6xl md:text-7xl">
             react-headless-tabs
