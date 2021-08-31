@@ -18,7 +18,7 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.8"
   },
   "prettier": {
     "printWidth": 80,
