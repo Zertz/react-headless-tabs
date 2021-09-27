@@ -11,11 +11,11 @@
     "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dnd": "^14.0.4",
-    "react-dnd-html5-backend": "^14.0.1",
+    "react-dnd-html5-backend": "^14.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10.3.5",
+    "autoprefixer": "^10.3.6",
     "postcss": "^8.3.7",
     "tailwindcss": "^2.2.16"
   }
