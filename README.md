@@ -8,10 +8,11 @@
 
 ## Features
 
-- 🌱 Under 1KB minified and gzipped
+- 🌱 Under 1KB minified and gzipped!
 - 🚛 Bring your own DOM!
 - ✨ Correctly handles dynamic tabs, no more empty tab panels!
 - 🤹‍♂️ Well suited for complex use cases, like drag and drop!
+- 🚀 Built-in lazy rendering!
 
 ## Getting started
 
