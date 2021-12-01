@@ -1,51 +1,51 @@
 {
+  "name": "react-headless-tabs",
   "version": "3.0.3",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
+  "author": "Pier-Luc Gendreau",
+  "source": "src/index.tsx",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "types": "dist/types.d.ts",
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "test": "tsc && jest",
+    "lint": "eslint . --ext ts,tsx",
+    "start": "parcel watch",
+    "build": "parcel build",
+    "prepublishOnly": "yarn test && yarn build"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@parcel/packager-ts": "^2.0.1",
+    "@parcel/transformer-typescript-types": "^2.0.1",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.4.3",
+    "parcel": "^2.0.1",
+    "prettier": "^2.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "4.5.2"
   },
   "peerDependencies": {
     "react": ">=16.8"
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "name": "react-headless-tabs",
   "private": true,
   "workspaces": [
     "docs"
   ],
-  "author": "Pier-Luc Gendreau",
-  "module": "dist/react-headless-tabs.esm.js",
-  "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@testing-library/jest-dom": "^5.15.1",
-    "@testing-library/react": "^12.1.2",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
-    "babel-loader": "^8.2.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-is": "^17.0.2",
-    "ts-loader": "^9.2.6",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.3.1",
-    "typescript": "4.5.2"
-  }
+  "files": [
+    "dist",
+    "src"
+  ]
 }
