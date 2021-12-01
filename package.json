@@ -1,6 +1,6 @@
 {
   "name": "react-headless-tabs",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "license": "MIT",
   "author": "Pier-Luc Gendreau",
   "source": "src/index.tsx",
@@ -40,7 +40,6 @@
   "peerDependencies": {
     "react": ">=16.8"
   },
-  "private": true,
   "workspaces": [
     "docs"
   ],
