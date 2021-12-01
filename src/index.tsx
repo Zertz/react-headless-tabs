@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 function usePrevious<T>(value: T) {
   const ref = React.useRef<T>();
@@ -36,7 +36,7 @@ export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
     }
 
     if (
-      typeof previousActiveIndex === 'number' &&
+      typeof previousActiveIndex === "number" &&
       previousActiveIndex >= 0 &&
       (tabs[previousActiveIndex] || tabs[previousActiveIndex - 1])
     ) {
@@ -61,13 +61,13 @@ export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
 
 export function TabPanel({
   children,
-  render = 'lazy',
+  render = "lazy",
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & {
   hidden: boolean;
-  render?: 'always' | 'lazy';
+  render?: "always" | "lazy";
 }) {
-  const [shouldRender, setShouldRender] = React.useState(render === 'always');
+  const [shouldRender, setShouldRender] = React.useState(render === "always");
 
   React.useEffect(() => {
     if (props.hidden) {
