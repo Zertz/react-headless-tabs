@@ -3,6 +3,8 @@
   "version": "4.0.0",
   "license": "MIT",
   "author": "Pier-Luc Gendreau",
+  "repository": "github:Zertz/react-headless-tabs"
+  "homepage": "https://react-headless-tabs.pierluc.io/#documentation"
   "source": "src/index.tsx",
   "main": "dist/main.js",
   "module": "dist/module.js",
