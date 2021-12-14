@@ -42,6 +42,7 @@
   "peerDependencies": {
     "react": ">=16.8"
   },
+  "private": true,
   "workspaces": [
     "docs"
   ],
