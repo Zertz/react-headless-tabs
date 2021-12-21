@@ -9,11 +9,12 @@ export function Overview() {
           <h2 className="font-bold text-4xl">Features</h2>
         </div>
         <ul className="space-y-2">
-          <li>🌱 Under 1KB minified and gzipped!</li>
+          <li>🌱 Well under 1KB minified and gzipped!</li>
           <li>🚛 Bring your own DOM!</li>
           <li>✨ Correctly handles dynamic tabs, no more empty tab panels!</li>
-          <li>🤹‍♂️ Well suited for complex use cases, like drag and drop!</li>
+          <li>🤹‍♂️ Well suited for complex use cases, including drag and drop!</li>
           <li>🚀 Built-in lazy rendering!</li>
+          <li>🤓 Available as ESM and CJS!</li>
         </ul>
       </div>
       <div>
