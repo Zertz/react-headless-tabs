@@ -17,7 +17,7 @@
     "prepublishOnly": "yarn test && yarn build"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-env": "^7.16.7",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.7",
     "@parcel/packager-ts": "^2.0.1",
