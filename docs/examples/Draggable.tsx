@@ -96,12 +96,12 @@ const TabSelector = ({
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const [{ handlerId }, drop] = useDrop({
+  const [{ handlerId }, drop] = useDrop<DragItem, unknown, { handlerId: number }>({
     accept: ItemTypes.TAB,
     collect: monitor => ({
-      handlerId: monitor.getHandlerId(),
+      handlerId: monitor.getHandlerId() as unknown as number,
     }),
-    hover(item: DragItem, monitor: DropTargetMonitor) {
+    hover(item, monitor) {
       if (!ref.current) {
         return;
       }
