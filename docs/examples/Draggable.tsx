@@ -1,6 +1,6 @@
 import { XYCoord } from 'dnd-core';
 import * as React from 'react';
-import { DndProvider, DropTargetMonitor, useDrag, useDrop } from 'react-dnd';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TabPanel, useTabs } from '../../src';
 
