@@ -23,6 +23,21 @@ export function Overview() {
         </div>
         <CodeBlock>npm install react-headless-tabs</CodeBlock>
       </div>
+       <div>
+        <div className="flex items-end justify-between border-b border-solid border-gray-400 mb-4 pb-2">
+          <h2 className="font-bold text-4xl">See also</h2>
+        </div>
+        <ul className="space-y-2">
+          <li>
+            <a
+              className="hover:text-gray-300 underline"
+              href="https://tempocal.vercel.app/"
+            >
+              @tempocal/react
+            </a>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }
