@@ -31,7 +31,7 @@ export function Overview() {
           <li>
             <a
               className="hover:text-gray-300 underline"
-              href="https://tempocal.vercel.app/"
+              href="https://tempocal.pierluc.io/"
             >
               @tempocal/react
             </a>
