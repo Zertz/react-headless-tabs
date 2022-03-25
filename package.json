@@ -13,7 +13,7 @@
     "test": "tsc && jest",
     "lint": "eslint . --ext ts,tsx",
     "start": "parcel watch",
-    "build": "parcel build",
+    "build": "parcel build src/index.tsx",
     "prepublishOnly": "yarn test && yarn build"
   },
   "devDependencies": {
