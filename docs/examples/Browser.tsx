@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { TabPanel, useTabs } from '../../src';
+import * as React from "react";
+import { TabPanel, useTabs } from "react-headless-tabs";
 
 let tabCounter = 4;
 
 export function Browser() {
-  const [tabs, setTabs] = React.useState(['Tab 1', 'Tab 2', 'Tab 3']);
+  const [tabs, setTabs] = React.useState(["Tab 1", "Tab 2", "Tab 3"]);
 
   const [selectedTab, setSelectedTab] = useTabs(tabs);
 
@@ -13,12 +13,12 @@ export function Browser() {
   return (
     <>
       <ul className="flex items-center border-b border-gray-300">
-        {tabs.map(tab => (
+        {tabs.map((tab) => (
           <TabSelector
             key={tab}
             isActive={selectedTab === tab}
             onClick={() => setSelectedTab(tab)}
-            onClose={() => setTabs(tabs => tabs.filter(t => t !== tab))}
+            onClose={() => setTabs((tabs) => tabs.filter((t) => t !== tab))}
           >
             {tab}
           </TabSelector>
@@ -29,7 +29,7 @@ export function Browser() {
             onClick={() => {
               const newTab = `Tab ${tabCounter++}`;
 
-              setTabs(tabs => tabs.concat(newTab));
+              setTabs((tabs) => tabs.concat(newTab));
               setSelectedTab(newTab);
             }}
             title="New tab"
@@ -52,9 +52,9 @@ export function Browser() {
         </li>
       </ul>
       <div className="p-4">
-        {tabs.map(tab => (
+        {tabs.map((tab) => (
           <TabPanel key={tab} hidden={selectedTab !== tab}>
-            {`Panel ${tab.split(' ')[1]}`}
+            {`Panel ${tab.split(" ")[1]}`}
           </TabPanel>
         ))}
       </div>
@@ -109,12 +109,12 @@ const TabSelector = ({
     <button
       className={`mr-8 group inline-flex items-center py-4 pl-2 pr-8 border-b-2 font-medium text-sm leading-5 cursor-pointer whitespace-nowrap ${
         isActive
-          ? 'border-indigo-500 text-indigo-600 focus:outline-none focus:text-indigo-800 focus:border-indigo-700'
-          : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300'
+          ? "border-indigo-500 text-indigo-600 focus:outline-none focus:text-indigo-800 focus:border-indigo-700"
+          : "border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300"
       }`}
       onClick={onClick}
       role="tab"
-      aria-selected={isActive ? 'true' : 'false'}
+      aria-selected={isActive ? "true" : "false"}
     >
       {children}
     </button>

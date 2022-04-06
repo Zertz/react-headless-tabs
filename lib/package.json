@@ -1,0 +1,38 @@
+{
+  "name": "react-headless-tabs",
+  "version": "4.0.2",
+  "description": "Headless, simple, and highly flexible tab-like primitives built with react hooks",
+  "repository": "github:Zertz/react-headless-tabs",
+  "homepage": "https://react-headless-tabs.pierluc.io/",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/react-headless-tabs.js",
+  "module": "./dist/react-headless-tabs.mjs",
+  "types": "./dist/react-headless-tabs.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-headless-tabs.mjs",
+      "require": "./dist/react-headless-tabs.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup react-headless-tabs.ts --dts --format esm,cjs --minify --sourcemap",
+    "dev": "tsup react-headless-tabs.ts --dts --format esm --watch",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "@vitejs/plugin-react": "^1.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tsup": "^5.12.3",
+    "vite": "^2.9.1",
+    "vitest": "^0.8.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  }
+}

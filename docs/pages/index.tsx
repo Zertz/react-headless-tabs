@@ -1,19 +1,19 @@
-import Head from 'next/head';
-import * as React from 'react';
-import { TabPanel, useTabs } from '../../src';
-import { Documentation } from '../components/Documentation';
-import { Examples } from '../components/Examples';
-import { Overview } from '../components/Overview';
+import Head from "next/head";
+import * as React from "react";
+import { TabPanel, useTabs } from "react-headless-tabs";
+import { Documentation } from "../components/Documentation";
+import { Examples } from "../components/Examples";
+import { Overview } from "../components/Overview";
 
 const baseClassName =
-  'inline-flex items-center border-b-2 cursor-pointer mr-8 px-2 py-4 font-medium text-sm whitespace-nowrap focus:outline-none focus:border-gray-300 focus:text-gray-400';
-const activeClassName = 'border-gray-50 text-gray-50';
+  "inline-flex items-center border-b-2 cursor-pointer mr-8 px-2 py-4 font-medium text-sm whitespace-nowrap focus:outline-none focus:border-gray-300 focus:text-gray-400";
+const activeClassName = "border-gray-50 text-gray-50";
 const inactiveClassName =
-  'border-transparent hover:border-gray-300 text-gray-200 hover:text-gray-300';
+  "border-transparent hover:border-gray-300 text-gray-200 hover:text-gray-300";
 
 export default function Index() {
   const defaultTab = React.useMemo(() => {
-    if (typeof window === 'undefined' || !window.location.hash) {
+    if (typeof window === "undefined" || !window.location.hash) {
       return;
     }
 
@@ -21,7 +21,7 @@ export default function Index() {
   }, []);
 
   const [selectedTab, setSelectedTab] = useTabs(
-    ['overview', 'documentation', 'examples'],
+    ["overview", "documentation", "examples"],
     defaultTab
   );
 
@@ -53,46 +53,46 @@ export default function Index() {
         <nav className="flex border-b border-gray-400 overflow-x-auto">
           <button
             className={`${baseClassName} ${
-              selectedTab === 'overview' ? activeClassName : inactiveClassName
+              selectedTab === "overview" ? activeClassName : inactiveClassName
             }`}
-            onClick={() => setSelectedTab('overview')}
+            onClick={() => setSelectedTab("overview")}
           >
             Overview
           </button>
           <button
             className={`${baseClassName} ${
-              selectedTab === 'documentation'
+              selectedTab === "documentation"
                 ? activeClassName
                 : inactiveClassName
             }`}
-            onClick={() => setSelectedTab('documentation')}
+            onClick={() => setSelectedTab("documentation")}
           >
             Documentation
           </button>
           <button
             className={`${baseClassName} ${
-              selectedTab === 'examples' ? activeClassName : inactiveClassName
+              selectedTab === "examples" ? activeClassName : inactiveClassName
             }`}
-            onClick={() => setSelectedTab('examples')}
+            onClick={() => setSelectedTab("examples")}
           >
             Examples
           </button>
         </nav>
         <TabPanel
           className="py-6 space-y-12"
-          hidden={selectedTab !== 'overview'}
+          hidden={selectedTab !== "overview"}
         >
           <Overview />
         </TabPanel>
         <TabPanel
           className="py-6 space-y-12"
-          hidden={selectedTab !== 'documentation'}
+          hidden={selectedTab !== "documentation"}
         >
           <Documentation />
         </TabPanel>
         <TabPanel
           className="py-6 space-y-12"
-          hidden={selectedTab !== 'examples'}
+          hidden={selectedTab !== "examples"}
         >
           <Examples />
         </TabPanel>
