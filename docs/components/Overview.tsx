@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { CodeBlock } from './Code';
+import * as React from "react";
+import { CodeBlock } from "./Code";
 
 export function Overview() {
   return (
@@ -12,7 +12,9 @@ export function Overview() {
           <li>🌱 Well under 1KB minified and gzipped!</li>
           <li>🚛 Bring your own DOM!</li>
           <li>✨ Correctly handles dynamic tabs, no more empty tab panels!</li>
-          <li>🤹‍♂️ Well suited for complex use cases, including drag and drop!</li>
+          <li>
+            🤹‍♂️ Well suited for complex use cases, including drag and drop!
+          </li>
           <li>🚀 Built-in lazy rendering!</li>
           <li>🤓 Available as ESM and CJS!</li>
         </ul>
@@ -23,7 +25,7 @@ export function Overview() {
         </div>
         <CodeBlock>npm install react-headless-tabs</CodeBlock>
       </div>
-       <div>
+      <div>
         <div className="flex items-end justify-between border-b border-solid border-gray-400 mb-4 pb-2">
           <h2 className="font-bold text-4xl">See also</h2>
         </div>
