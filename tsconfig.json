@@ -8,9 +8,7 @@
     "strict": true,
     "target": "ES2021",
     "baseUrl": ".",
-    "paths": {
-      "@tempocal/*": ["packages/*"]
-    }
+    "paths": {}
   },
   "exclude": ["dist", "node_modules"]
 }
