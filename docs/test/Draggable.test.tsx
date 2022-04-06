@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
 import { Draggable } from "../examples/Draggable";
 
-test("Draggable", () => {
+test.skip("Draggable", () => {
   const { getAllByText, getByText } = render(<Draggable />);
 
   expect(getAllByText("My Account")).toHaveLength(2);
