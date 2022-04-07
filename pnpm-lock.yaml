@@ -33,7 +33,6 @@ importers:
       '@testing-library/react': ^13.0.0
       '@vitejs/plugin-react': ^1.3.0
       autoprefixer: ^10.4.4
-      classnames: ^2.3.1
       jsdom: ^19.0.0
       next: ^12.1.4
       postcss: ^8.4.12
@@ -46,7 +45,6 @@ importers:
       vite: ^2.9.1
       vitest: ^0.8.2
     dependencies:
-      classnames: 2.3.1
       next: 12.1.4_react-dom@18.0.0+react@18.0.0
       react: 18.0.0
       react-dnd: 16.0.0_react@18.0.0
@@ -1362,10 +1360,6 @@ packages:
   /ci-info/3.3.0:
     resolution: {integrity: sha512-riT/3vI5YpVH6/qomlDnJow6TBee2PBKSEpx3O32EGPYbWGIRsIlGRms3Sm74wYE1JMo8RnO04Hb12+v1J5ICw==}
     dev: true
-
-  /classnames/2.3.1:
-    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
-    dev: false
 
   /cliui/6.0.0:
     resolution: {integrity: sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ==}
