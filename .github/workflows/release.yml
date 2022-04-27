@@ -1,0 +1,36 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "pnpm"
+      - uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+      - run: pnpm install
+      - run: pnpm run build
+      - name: Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: "ci: update version and publish"
+          publish: pnpm ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Code, CodeBlock } from './Code';
+import * as React from "react";
+import { Code, CodeBlock } from "./Code";
 
 export function Documentation() {
   return (
@@ -25,13 +25,13 @@ export function Documentation() {
           <div className="pt-8 space-y-2">
             <CodeBlock>selectedTab: string | null</CodeBlock>
             <p>
-              The currently selected tab, can be null if there are no tabs or if{' '}
+              The currently selected tab, can be null if there are no tabs or if{" "}
               <Code>defaultTab</Code> was initialized to null
             </p>
           </div>
           <div className="pt-8 space-y-2">
             <CodeBlock>
-              {'setSelectedTab: (tab: string | null) => void'}
+              {"setSelectedTab: (tab: string | null) => void"}
             </CodeBlock>
             <p>Update the selected tab, or pass null to select none.</p>
           </div>
@@ -64,7 +64,7 @@ export function Documentation() {
             </p>
             <p>
               Since a <Code>{`<TabPanel>`}</Code> is rendered on-demand and
-              exactly once, it's perfect for lazily fetching data.{' '}
+              exactly once, it's perfect for lazily fetching data.{" "}
             </p>
             <p>
               <em>

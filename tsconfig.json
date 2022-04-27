@@ -1,11 +1,14 @@
 {
-  "include": ["src"],
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2021"
-  }
+    "target": "ES2021",
+    "baseUrl": ".",
+    "paths": {}
+  },
+  "exclude": ["dist", "node_modules"]
 }

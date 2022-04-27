@@ -1,5 +1,4 @@
-*.log
-.DS_Store
-node_modules
-.parcel-cache
+.next
+.turbo
 dist
+node_modules

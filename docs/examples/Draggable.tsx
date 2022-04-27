@@ -1,26 +1,25 @@
-import { XYCoord } from 'dnd-core';
-import * as React from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { TabPanel, useTabs } from '../../src';
+import * as React from "react";
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { TabPanel, useTabs } from "react-headless-tabs";
 
 export function Draggable() {
   const [tabs, setTabs] = React.useState([
     {
-      id: '1',
-      text: 'My Account',
+      id: "1",
+      text: "My Account",
     },
     {
-      id: '2',
-      text: 'Company',
+      id: "2",
+      text: "Company",
     },
     {
-      id: '3',
-      text: 'Team Members',
+      id: "3",
+      text: "Team Members",
     },
     {
-      id: '4',
-      text: 'Billing',
+      id: "4",
+      text: "Billing",
     },
   ]);
 
@@ -30,7 +29,7 @@ export function Draggable() {
     (dragIndex: number, hoverIndex: number) => {
       const dragTab = tabs[dragIndex];
 
-      setTabs(tabs => {
+      setTabs((tabs) => {
         const tabsCopy = JSON.parse(JSON.stringify(tabs));
 
         tabsCopy.splice(dragIndex, 1);
@@ -59,7 +58,7 @@ export function Draggable() {
         ))}
       </div>
       <div className="flex-grow p-4">
-        {tabs.map(tab => (
+        {tabs.map((tab) => (
           <TabPanel key={tab.id} hidden={selectedTab !== tab.id}>
             {tab.text}
           </TabPanel>
@@ -70,7 +69,7 @@ export function Draggable() {
 }
 
 const ItemTypes = {
-  TAB: 'tab',
+  TAB: "tab",
 };
 
 interface DragItem {
@@ -96,9 +95,13 @@ const TabSelector = ({
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const [{ handlerId }, drop] = useDrop<DragItem, unknown, { handlerId: number }>({
+  const [{ handlerId }, drop] = useDrop<
+    DragItem,
+    unknown,
+    { handlerId: number }
+  >({
     accept: ItemTypes.TAB,
-    collect: monitor => ({
+    collect: (monitor) => ({
       handlerId: monitor.getHandlerId() as unknown as number,
     }),
     hover(item, monitor) {
@@ -125,7 +128,7 @@ const TabSelector = ({
       const clientOffset = monitor.getClientOffset();
 
       // Get pixels to the top
-      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
+      const hoverClientY = clientOffset!.y - hoverBoundingRect.top;
 
       // Only perform the move when the mouse has crossed half of the items height
       // When dragging downwards, only move when the cursor is below 50%
@@ -155,7 +158,7 @@ const TabSelector = ({
   const [{ isDragging }, drag] = useDrag({
     type: ItemTypes.TAB,
     item: () => ({ id, index }),
-    collect: monitor => ({
+    collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
@@ -166,9 +169,9 @@ const TabSelector = ({
     <div
       className={`mr-4 group inline-flex items-center px-2 py-4 border-l-2 font-medium text-sm leading-5 cursor-pointer whitespace-nowrap ${
         isActive
-          ? 'border-indigo-500 text-indigo-600 focus:outline-none focus:text-indigo-800 focus:border-indigo-700'
-          : 'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300'
-      } ${isDragging ? 'opacity-25' : 'opacity-100'}`}
+          ? "border-indigo-500 text-indigo-600 focus:outline-none focus:text-indigo-800 focus:border-indigo-700"
+          : "border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-gray-300"
+      } ${isDragging ? "opacity-25" : "opacity-100"}`}
       data-handler-id={handlerId}
       onClick={onClick}
       ref={ref}
