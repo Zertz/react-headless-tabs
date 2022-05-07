@@ -108,17 +108,17 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               </p>
               <CodeBlock>{`render?: "always" | "idle" | "lazy"`}</CodeBlock>
               <p>
-                <Code>{`always`}</Code>: the panel will be mounted immediately.
-                While it is provided as an option, <Code>{`idle`}</Code> is
-                usually the better option.
+                <Code>{`always`}</Code>: the tab panel will be mounted
+                immediately. While it is provided as an option,{" "}
+                <Code>{`idle`}</Code> is usually the better option.
               </p>
               <p>
-                <Code>{`idle`}</Code>: the panel will be mounted eventually,
-                when the browser is finished doing more important work. This is
+                <Code>{`idle`}</Code>: the tab panel will be mounted eventually,
+                when the browser is finished doing more important work. This
                 avoids flickering when the tab is initially selected.
               </p>
               <p>
-                <Code>{`lazy`}</Code>: the panel will be rendered when{" "}
+                <Code>{`lazy`}</Code>: the tab panel will be rendered when{" "}
                 <Code>{`hidden`}</Code> becomes <Code>{`false`}</Code> and from
                 then on, it will never be unmounted. This is ideal for fetching
                 data on-demand but may cause the tab to flicker when initally
