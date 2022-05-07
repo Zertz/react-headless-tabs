@@ -70,25 +70,13 @@ export default function Index() {
             </a>
           ))}
         </nav>
-        <TabPanel
-          className="py-6 space-y-12"
-          hidden={tab !== "#overview"}
-          render="idle"
-        >
+        <TabPanel className="py-6 space-y-12" hidden={tab !== "#overview"}>
           <Overview />
         </TabPanel>
-        <TabPanel
-          className="py-6 space-y-12"
-          hidden={tab !== "#documentation"}
-          render="idle"
-        >
+        <TabPanel className="py-6 space-y-12" hidden={tab !== "#documentation"}>
           <Documentation />
         </TabPanel>
-        <TabPanel
-          className="py-6 space-y-12"
-          hidden={tab !== "#examples"}
-          render="idle"
-        >
+        <TabPanel className="py-6 space-y-12" hidden={tab !== "#examples"}>
           <Examples />
         </TabPanel>
       </main>
