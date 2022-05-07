@@ -104,27 +104,28 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 Depending on the use case, a set of tabs may have different
                 rendering strategies. For the initial render to be as fast as
                 possible, the default tab will always be rendered immediately no
-                matter which strategy is set.
+                matter which strategy is set. Once mounted, tab panels are
+                hidden but never unmounted.
               </p>
               <CodeBlock>{`render?: "always" | "idle" | "lazy"`}</CodeBlock>
               <p>
-                <Code>{`always`}</Code>: the tab panel will be mounted
-                immediately. While it is provided as an option,{" "}
-                <Code>{`idle`}</Code> is usually the better option.
+                <Code>{`always`}</Code>: mount the tab panel immediately. While
+                it is provided as an option, <Code>{`idle`}</Code> is usually
+                the better option.
               </p>
               <p>
-                <Code>{`idle`}</Code>: the tab panel will be mounted eventually,
-                when the browser is finished doing more important work. This
-                avoids flickering when the tab is initially selected.
+                <Code>{`idle`}</Code>: mount the tab panel eventually, when the
+                browser is finished doing more important work. This avoids
+                flickering when a tab is initially selected.
               </p>
               <p>
-                <Code>{`lazy`}</Code>: the tab panel will be rendered when{" "}
-                <Code>{`hidden`}</Code> becomes <Code>{`false`}</Code> and from
-                then on, it will never be unmounted. This is ideal for fetching
-                data on-demand but may cause the tab to flicker when initally
-                rendered.
+                <Code>{`lazy`}</Code>: mount the tab panel when
+                <Code>{`hidden`}</Code> becomes <Code>{`false`}</Code>. This is
+                ideal for post-poning unimportant work or fetching data
+                on-demand but may cause flickering when a tab is initially
+                selected.
               </p>
-              <em className="block">Defaults to lazy</em>
+              <em className="block">Defaults to idle</em>
             </div>
           </div>
         </div>
