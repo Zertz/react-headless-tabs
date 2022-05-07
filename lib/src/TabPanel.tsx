@@ -8,7 +8,9 @@ export function TabPanel({
   hidden: boolean;
   render?: "always" | "idle" | "lazy";
 }) {
-  const [shouldRender, setShouldRender] = React.useState(render === "always");
+  const [shouldRender, setShouldRender] = React.useState(
+    !props.hidden || render === "always"
+  );
 
   React.useEffect(() => {
     if (props.hidden) {
