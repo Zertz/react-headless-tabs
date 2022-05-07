@@ -81,18 +81,21 @@ export default function Index() {
         <TabPanel
           className="py-6 space-y-12"
           hidden={selectedTab !== "overview"}
+          render="idle"
         >
           <Overview />
         </TabPanel>
         <TabPanel
           className="py-6 space-y-12"
           hidden={selectedTab !== "documentation"}
+          render="idle"
         >
           <Documentation />
         </TabPanel>
         <TabPanel
           className="py-6 space-y-12"
           hidden={selectedTab !== "examples"}
+          render="idle"
         >
           <Examples />
         </TabPanel>
