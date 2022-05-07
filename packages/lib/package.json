@@ -1,6 +1,6 @@
 {
   "name": "react-headless-tabs",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "description": "Headless, simple, and highly flexible tab-like primitives built with react hooks",
   "repository": "github:Zertz/react-headless-tabs",
   "homepage": "https://react-headless-tabs.pierluc.io/",
