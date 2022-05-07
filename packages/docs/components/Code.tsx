@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export function CodeBlock({ children }: { children: string }) {
   return (
     <pre className="bg-gray-800 overflow-x-auto p-2 rounded">
