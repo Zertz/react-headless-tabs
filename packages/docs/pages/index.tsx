@@ -11,27 +11,33 @@ const activeClassName = "border-gray-50 text-gray-50";
 const inactiveClassName =
   "border-transparent hover:border-gray-300 text-gray-200 hover:text-gray-300";
 
+const tabs = [
+  { name: "Overview", href: "#overview" },
+  { name: "Documentation", href: "#documentation" },
+  { name: "Examples", href: "#examples" },
+];
+
 export default function Index() {
-  const defaultTab = React.useMemo(() => {
-    if (typeof window === "undefined" || !window.location.hash) {
-      return;
-    }
-
-    return window.location.hash.substring(1);
-  }, []);
-
-  const [selectedTab, setSelectedTab] = useTabs(
-    ["overview", "documentation", "examples"],
-    defaultTab
+  const [tab, setTab] = useTabs(
+    tabs.map(({ href }) => href),
+    typeof window === "undefined"
+      ? undefined
+      : tabs.find(({ href }) => href === window.location.hash)?.href
   );
 
   React.useEffect(() => {
-    if (!selectedTab) {
-      return;
-    }
+    const interval = setInterval(() => {
+      if (window.location.hash === tab) {
+        return;
+      }
 
-    window.location.hash = selectedTab;
-  }, [selectedTab]);
+      setTab(window.location.hash || tabs[0].href);
+    }, 125);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [setTab, tab]);
 
   return (
     <div className="flex flex-col bg-gray-700 min-h-screen overflow-x-hidden text-gray-200 w-full">
@@ -51,50 +57,36 @@ export default function Index() {
           </a>
         </div>
         <nav className="flex border-b border-gray-400 overflow-x-auto">
-          <button
-            className={`${baseClassName} ${
-              selectedTab === "overview" ? activeClassName : inactiveClassName
-            }`}
-            onClick={() => setSelectedTab("overview")}
-          >
-            Overview
-          </button>
-          <button
-            className={`${baseClassName} ${
-              selectedTab === "documentation"
-                ? activeClassName
-                : inactiveClassName
-            }`}
-            onClick={() => setSelectedTab("documentation")}
-          >
-            Documentation
-          </button>
-          <button
-            className={`${baseClassName} ${
-              selectedTab === "examples" ? activeClassName : inactiveClassName
-            }`}
-            onClick={() => setSelectedTab("examples")}
-          >
-            Examples
-          </button>
+          {tabs.map(({ name, href }) => (
+            <a
+              key={href}
+              href={href}
+              className={`${baseClassName} ${
+                tab === href ? activeClassName : inactiveClassName
+              }`}
+              onClick={() => setTab(href)}
+            >
+              {name}
+            </a>
+          ))}
         </nav>
         <TabPanel
           className="py-6 space-y-12"
-          hidden={selectedTab !== "overview"}
+          hidden={tab !== "#overview"}
           render="idle"
         >
           <Overview />
         </TabPanel>
         <TabPanel
           className="py-6 space-y-12"
-          hidden={selectedTab !== "documentation"}
+          hidden={tab !== "#documentation"}
           render="idle"
         >
           <Documentation />
         </TabPanel>
         <TabPanel
           className="py-6 space-y-12"
-          hidden={selectedTab !== "examples"}
+          hidden={tab !== "#examples"}
           render="idle"
         >
           <Examples />
