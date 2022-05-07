@@ -1,4 +1,5 @@
 ---
+"docs": major
 "react-headless-tabs": major
 ---
 

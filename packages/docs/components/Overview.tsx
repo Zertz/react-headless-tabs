@@ -1,4 +1,3 @@
-import * as React from "react";
 import { CodeBlock } from "./Code";
 
 export function Overview() {
@@ -15,7 +14,9 @@ export function Overview() {
           <li>
             🤹‍♂️ Well suited for complex use cases, including drag and drop!
           </li>
-          <li>🚀 Built-in lazy rendering!</li>
+          <li>
+            🚀 Mix and match rendering strategies for the best performance!
+          </li>
           <li>🤓 Available as ESM and CJS!</li>
         </ul>
       </div>

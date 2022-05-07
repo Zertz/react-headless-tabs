@@ -1,4 +1,3 @@
-import * as React from "react";
 import { TabPanel, useTabs } from "react-headless-tabs";
 import { TabSelector } from "./TabSelector";
 
