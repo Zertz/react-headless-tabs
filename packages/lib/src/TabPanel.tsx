@@ -1,5 +1,10 @@
 import * as React from "react";
 
+const idle =
+  typeof window !== "undefined" && "requestIdleCallback" in window
+    ? requestIdleCallback
+    : setTimeout;
+
 export function TabPanel({
   children,
   render = "idle",
@@ -15,7 +20,7 @@ export function TabPanel({
   React.useEffect(() => {
     if (props.hidden) {
       if (render === "idle") {
-        requestIdleCallback(() => setShouldRender(true));
+        idle(() => setShouldRender(true));
       }
 
       return;
