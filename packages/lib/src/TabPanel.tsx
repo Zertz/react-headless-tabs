@@ -2,7 +2,7 @@ import * as React from "react";
 
 export function TabPanel({
   children,
-  render = "lazy",
+  render = "idle",
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & {
   hidden: boolean;
