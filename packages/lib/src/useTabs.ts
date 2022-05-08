@@ -54,7 +54,7 @@ export function useTabs<K extends string>(tabs: K[], defaultTab?: K | null) {
     setSelectedTab(
       defaultTab && tabs.includes(defaultTab) ? defaultTab : tabs[0]
     );
-  }, [selectedTab, defaultTab, tabs]);
+  }, [defaultTab, previousActiveIndex, selectedTab, setSelectedTab, tabs]);
 
   return state;
 }
