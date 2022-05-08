@@ -30,7 +30,7 @@
     "react-dom": "^18.1.0",
     "tsup": "^5.12.7",
     "vite": "^2.9.8",
-    "vitest": "^0.10.5"
+    "vitest": "^0.11.0"
   },
   "peerDependencies": {
     "react": ">=16.8",
