@@ -16,6 +16,7 @@
       "require": "./dist/react-headless-tabs.js"
     }
   },
+  "sideEffects": false,
   "scripts": {
     "build": "tsup react-headless-tabs.ts --dts --format esm,cjs --minify --sourcemap",
     "dev": "tsup react-headless-tabs.ts --dts --format esm --watch",
