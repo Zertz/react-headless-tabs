@@ -1,5 +1,15 @@
 # docs
 
+## 1.0.1
+
+### Patch Changes
+
+- b2a066d: Upgrade dependencies
+- Updated dependencies [b2a066d]
+- Updated dependencies [b2a066d]
+- Updated dependencies [b2a066d]
+  - react-headless-tabs@5.0.1
+
 ## 1.0.0
 
 ### Major Changes
