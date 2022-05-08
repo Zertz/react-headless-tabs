@@ -1,5 +1,13 @@
 # react-headless-tabs
 
+## 5.0.1
+
+### Patch Changes
+
+- b2a066d: Add missing effect dependencies
+- b2a066d: Upgrade dependencies
+- b2a066d: Set sideEffects: false
+
 ## 5.0.0
 
 ### Major Changes
