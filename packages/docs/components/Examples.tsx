@@ -11,37 +11,37 @@ export function Examples() {
     <>
       <Example
         title="Basic"
-        url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Basic.tsx"
+        url="https://github.com/Zertz/react-headless-tabs/tree/main/packages/docs/examples/Basic.tsx"
       >
         <Basic />
       </Example>
       <Example
         title="Browser"
-        url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Browser.tsx"
+        url="https://github.com/Zertz/react-headless-tabs/tree/main/packages/docs/examples/Browser.tsx"
       >
         <Browser />
       </Example>
       <Example
         title="Draggable"
-        url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Draggable.tsx"
+        url="https://github.com/Zertz/react-headless-tabs/tree/main/packages/docs/examples/Draggable.tsx"
       >
         <Draggable />
       </Example>
       <Example
         title="Dropdown"
-        url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Dropdown.tsx"
+        url="https://github.com/Zertz/react-headless-tabs/tree/main/packages/docs/examples/Dropdown.tsx"
       >
         <Dropdown />
       </Example>
       <Example
         title="Nested"
-        url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Nested.tsx"
+        url="https://github.com/Zertz/react-headless-tabs/tree/main/packages/docs/examples/Nested.tsx"
       >
         <Nested />
       </Example>
       <Example
         title="Overflow"
-        url="https://github.com/Zertz/react-headless-tabs/blob/main/docs/examples/Overflow.tsx"
+        url="https://github.com/Zertz/react-headless-tabs/tree/main/packages/docs/examples/Overflow.tsx"
       >
         <Overflow />
       </Example>
