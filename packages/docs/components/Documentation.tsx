@@ -132,10 +132,11 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 <h4 className="text-xl font-bold">unmount</h4>
               </div>
               <p>
-                When <Code>{`render`}</Code> is set to <Code>{`lazy`}</Code>, a
-                set of tabs may have different unmounting strategies. This
-                controls if and how the tab panel should be unmounted after it
-                has been hidden.
+                When <Code>{`render`}</Code> is set to <Code>{`lazy`}</Code>,
+                this controls if and how the tab panel should be unmounted after
+                it has been hidden. When <Code>{`render`}</Code> is set to{" "}
+                <Code>{`always`}</Code> or <Code>{`idle`}</Code>, the tab panel
+                is hidden but never unmounted.
               </p>
               <CodeBlock>{`unmount?: "always" | "idle" | "never"`}</CodeBlock>
               <p>
