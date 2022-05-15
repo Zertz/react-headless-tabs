@@ -9,11 +9,11 @@ export function TabPanel({
   hidden: boolean;
 } & (
     | {
-        render?: "idle";
+        render?: "always" | "idle";
         unmount?: "never";
       }
     | {
-        render?: "always" | "lazy";
+        render?: "lazy";
         unmount?: "always" | "idle" | "never";
       }
   )) {
@@ -22,33 +22,18 @@ export function TabPanel({
   );
 
   React.useEffect(() => {
-    if (!props.hidden) {
+    if (!props.hidden || render === "always") {
       setShouldRender(true);
-
-      return;
-    }
-
-    if (render === "idle") {
+    } else if (render === "idle") {
       ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
         setShouldRender(true)
       );
-
-      return;
-    }
-
-    switch (unmount) {
-      case "always": {
-        setShouldRender(false);
-
-        break;
-      }
-      case "idle": {
-        ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(
-          () => setShouldRender(false)
-        );
-
-        break;
-      }
+    } else if (unmount === "always") {
+      setShouldRender(false);
+    } else if (unmount === "idle") {
+      ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
+        setShouldRender(false)
+      );
     }
   }, [props.hidden, render, unmount]);
 

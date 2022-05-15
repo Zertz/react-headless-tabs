@@ -120,10 +120,10 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 flickering when the tab panel is initially selected.
               </p>
               <p>
-                <Code>{`lazy`}</Code>: mount the tab panel when
+                <Code>{`lazy`}</Code>: mount the tab panel on-demand, when
                 <Code>{`hidden`}</Code> becomes <Code>{`false`}</Code>. This is
-                ideal for post-poning data fetching or demanding work but may
-                cause flickering when the tab is initially selected.
+                ideal for post-poning data fetching or heavy work but may cause
+                flickering when the tab is initially selected.
               </p>
               <em className="block">Defaults to idle</em>
             </div>
@@ -132,9 +132,10 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 <h4 className="text-xl font-bold">unmount</h4>
               </div>
               <p>
-                Depending on the use case, a set of tabs may have different
-                unmounting strategies. This controls if and how the tab panel
-                should be unmounted after being hidden.
+                When <Code>{`render`}</Code> is set to <Code>{`lazy`}</Code>, a
+                set of tabs may have different unmounting strategies. This
+                controls if and how the tab panel should be unmounted after it
+                has been hidden.
               </p>
               <CodeBlock>{`unmount?: "always" | "idle" | "never"`}</CodeBlock>
               <p>
@@ -149,7 +150,8 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               <p>
                 ⭐️ <Code>{`never`}</Code>: never unmount the tab panel. Unless
                 there are performance constraints to keeping the tab panel
-                mounted, this typically provides the best user experience.
+                mounted, this typically provides the best user experience as it
+                avoids flickering when the tab panel is selected again.
               </p>
               <em className="block">Defaults to never</em>
             </div>
