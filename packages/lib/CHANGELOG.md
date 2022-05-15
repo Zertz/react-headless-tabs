@@ -1,5 +1,15 @@
 # react-headless-tabs
 
+## 5.1.0
+
+### Minor Changes
+
+- cf360ef: Add different unmounting strategies
+
+### Patch Changes
+
+- 5c1fa1b: Upgrade dependencies
+
 ## 5.0.1
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # docs
 
+## 1.1.0
+
+### Minor Changes
+
+- cf360ef: Add different unmounting strategies
+
+### Patch Changes
+
+- 5c1fa1b: Upgrade dependencies
+- 912140d: Fix example URLs
+- Updated dependencies [cf360ef]
+- Updated dependencies [5c1fa1b]
+  - react-headless-tabs@5.1.0
+
 ## 1.0.1
 
 ### Patch Changes
