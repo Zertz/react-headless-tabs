@@ -104,28 +104,54 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 Depending on the use case, a set of tabs may have different
                 rendering strategies. For the initial render to be as fast as
                 possible, the default tab will always be rendered immediately no
-                matter which strategy is set. Once mounted, tab panels are
-                hidden but never unmounted.
+                matter which strategy is set.
               </p>
               <CodeBlock>{`render?: "always" | "idle" | "lazy"`}</CodeBlock>
               <p>
-                <Code>{`always`}</Code>: mount the tab panel immediately. While
-                it is provided as an option, <Code>{`idle`}</Code> is usually
-                the better option.
+                <Code>{`always`}</Code>: immediately mount the tab panel. While
+                it is provided as an option, <Code>{`idle`}</Code> is usually a
+                better choice.
               </p>
               <p>
-                <Code>{`idle`}</Code>: mount the tab panel eventually, when the
-                browser is finished doing more important work. This avoids
-                flickering when a tab is initially selected.
+                ⭐️ <Code>{`idle`}</Code>: eventually mount the tab panel, when
+                the browser is finished doing more important work. Unless there
+                are performance constraints to mounting the tab panel early,
+                this typically provides the best user experience as it avoids
+                flickering when the tab panel is initially selected.
               </p>
               <p>
                 <Code>{`lazy`}</Code>: mount the tab panel when
                 <Code>{`hidden`}</Code> becomes <Code>{`false`}</Code>. This is
-                ideal for post-poning unimportant work or fetching data
-                on-demand but may cause flickering when a tab is initially
-                selected.
+                ideal for post-poning data fetching or demanding work but may
+                cause flickering when the tab is initially selected.
               </p>
               <em className="block">Defaults to idle</em>
+            </div>
+            <div className="space-y-2">
+              <div className="mb-4 flex items-end justify-between border-b border-solid border-gray-400 pb-2">
+                <h4 className="text-xl font-bold">unmount</h4>
+              </div>
+              <p>
+                Depending on the use case, a set of tabs may have different
+                unmounting strategies. This controls if and how the tab panel
+                should be unmounted after being hidden.
+              </p>
+              <CodeBlock>{`unmount?: "always" | "idle" | "never"`}</CodeBlock>
+              <p>
+                <Code>{`always`}</Code>: immediately unmount the tab panel.
+                While it is provided as an option, <Code>{`idle`}</Code> is
+                usually a better choice.
+              </p>
+              <p>
+                <Code>{`idle`}</Code>: eventually unmount the tab panel, when
+                the browser is finished doing more important work.
+              </p>
+              <p>
+                ⭐️ <Code>{`never`}</Code>: never unmount the tab panel. Unless
+                there are performance constraints to keeping the tab panel
+                mounted, this typically provides the best user experience.
+              </p>
+              <em className="block">Defaults to never</em>
             </div>
           </div>
         </div>
