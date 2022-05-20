@@ -1,5 +1,11 @@
 # react-headless-tabs
 
+## 5.1.1
+
+### Patch Changes
+
+- 8efb1a5: Upgrade dependencies
+
 ## 5.1.0
 
 ### Minor Changes

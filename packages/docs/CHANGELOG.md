@@ -1,5 +1,13 @@
 # docs
 
+## 1.1.1
+
+### Patch Changes
+
+- 8efb1a5: Upgrade dependencies
+- Updated dependencies [8efb1a5]
+  - react-headless-tabs@5.1.1
+
 ## 1.1.0
 
 ### Minor Changes
