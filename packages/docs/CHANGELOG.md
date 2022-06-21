@@ -1,5 +1,15 @@
 # docs
 
+## 1.1.2
+
+### Patch Changes
+
+- 6d29f3d: Upgrade dependencies
+- 06ec98e: Upgrade pnpm in GitHub Actions
+- Updated dependencies [6d29f3d]
+- Updated dependencies [06ec98e]
+  - react-headless-tabs@5.1.2
+
 ## 1.1.1
 
 ### Patch Changes
