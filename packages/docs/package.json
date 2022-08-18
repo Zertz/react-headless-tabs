@@ -12,7 +12,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
-    "react-headless-tabs": "workspace:5.1.2"
+    "react-headless-tabs": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",
