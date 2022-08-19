@@ -1,5 +1,13 @@
 # docs
 
+## 1.1.3
+
+### Patch Changes
+
+- e854bad: Upgrade dependencies
+- Updated dependencies [e854bad]
+  - react-headless-tabs@5.1.3
+
 ## 1.1.2
 
 ### Patch Changes
