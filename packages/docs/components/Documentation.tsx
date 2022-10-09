@@ -138,7 +138,7 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 <Code>{`always`}</Code> or <Code>{`idle`}</Code>, the tab panel
                 is hidden but never unmounted.
               </p>
-              <CodeBlock>{`unmount?: "always" | "idle" | "never"`}</CodeBlock>
+              <CodeBlock>{`unmount?: "always" | "idle" | "never" | number`}</CodeBlock>
               <p>
                 <Code>{`always`}</Code>: immediately unmount the tab panel.
                 While it is provided as an option, <Code>{`idle`}</Code> is
@@ -149,10 +149,16 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 the browser is finished doing more important work.
               </p>
               <p>
-                ⭐️ <Code>{`never`}</Code>: never unmount the tab panel. Unless
+                <Code>{`never`}</Code>: never unmount the tab panel. Unless
                 there are performance constraints to keeping the tab panel
                 mounted, this typically provides the best user experience as it
                 avoids flickering when the tab panel is selected again.
+              </p>
+              <p>
+                ⭐️ <Code>{`number`}</Code>: unmount the tab panel after the tab
+                has been unselected for more than this amount of time, in
+                seconds. This strategy can only be used when <Code>render</Code>{" "}
+                is set to <Code>idle</Code> (default) or <Code>lazy</Code>.
               </p>
               <em className="block">Defaults to never</em>
             </div>
