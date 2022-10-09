@@ -13,7 +13,11 @@ export function TabPanel({
         unmount?: never;
       }
     | {
-        render?: "idle" | "lazy";
+        render?: "idle";
+        unmount?: "never" | number;
+      }
+    | {
+        render?: "lazy";
         unmount?: "always" | "idle" | "never" | number;
       }
   )) {
