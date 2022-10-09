@@ -9,8 +9,8 @@ export function TabPanel({
   hidden: boolean;
 } & (
     | {
-        render: "always";
-        unmount?: never;
+        render?: "always";
+        unmount?: "never";
       }
     | {
         render?: "idle";
@@ -30,20 +30,22 @@ export function TabPanel({
   React.useEffect(() => {
     if (!props.hidden || render === "always") {
       setShouldRender(true);
+    } else if (props.hidden) {
+      if (unmount === "always") {
+        setShouldRender(false);
+      } else if (unmount === "idle") {
+        ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(
+          () => setShouldRender(false)
+        );
+      } else if (typeof unmount === "number") {
+        unmountTimer.current = window.setTimeout(() => {
+          setShouldRender(false);
+        }, unmount * 1000);
+      }
     } else if (render === "idle") {
       ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
         setShouldRender(true)
       );
-    } else if (unmount === "always") {
-      setShouldRender(false);
-    } else if (unmount === "idle") {
-      ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
-        setShouldRender(false)
-      );
-    } else if (typeof unmount === "number") {
-      unmountTimer.current = window.setTimeout(() => {
-        setShouldRender(false);
-      }, unmount * 1000);
     }
 
     return () => {
