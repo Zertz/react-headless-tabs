@@ -1,5 +1,11 @@
 # react-headless-tabs
 
+## 6.0.2
+
+### Patch Changes
+
+- 1ad11ef: Let default tab init to undefined
+
 ## 6.0.1
 
 ### Patch Changes
