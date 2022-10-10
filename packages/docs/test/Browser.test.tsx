@@ -1,8 +1,8 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { expect, test } from "vitest";
 import { Browser } from "../examples/Browser";
 
-test("Browser", () => {
+test("Browser", async () => {
   const { getAllByText, getAllByTitle, getByText, getByTitle } = render(
     <Browser />
   );
@@ -13,9 +13,13 @@ test("Browser", () => {
   expect(getByText("Tab 1")).toHaveAttribute("aria-selected", "true");
   expect(getByText("Panel 1")).toBeTruthy();
 
+  await waitFor(() => expect(getByText("Panel 2")).toBeTruthy());
+  expect(getByText("Panel 3")).toBeTruthy();
+
   const [closeTab1] = getAllByTitle("Close tab");
   fireEvent.click(closeTab1);
 
+  expect(getAllByText(/^Tab (1|2|3)$/)).toHaveLength(2);
   expect(getAllByText(/^Tab (2|3)$/)).toHaveLength(2);
 
   const newTab = getByTitle("New tab");
