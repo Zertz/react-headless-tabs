@@ -44,7 +44,10 @@ export function TabPanel({
     }
 
     if (typeof unmount === "number") {
-      unmountRef.current = wait(() => setShouldRender(false), unmount * 1000);
+      unmountRef.current = wait(
+        () => setShouldRender(!props.hidden),
+        unmount * 1000
+      );
     }
 
     return () => {
