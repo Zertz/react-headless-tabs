@@ -9,26 +9,6 @@ test("default", () => {
   expect(getByText("Hello")).toBeTruthy();
 });
 
-test("valid: render/always", () => {
-  const { getByText } = render(
-    <TabPanel hidden={false} render="always">
-      Hello
-    </TabPanel>
-  );
-
-  expect(getByText("Hello")).toBeTruthy();
-});
-
-test("invalid: render/always + unmount/never", () => {
-  const { getByText } = render(
-    <TabPanel hidden={false} render="always" unmount="never">
-      Hello
-    </TabPanel>
-  );
-
-  expect(getByText("Hello")).toBeTruthy();
-});
-
 test("valid: render/default + unmount/number", () => {
   const { getByText } = render(
     <TabPanel hidden={false} unmount={60}>

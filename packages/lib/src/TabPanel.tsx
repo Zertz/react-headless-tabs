@@ -1,5 +1,17 @@
 import * as React from "react";
 
+function wait(fn: () => void, ms?: number): () => void {
+  if (!ms && "requestIdleCallback" in window) {
+    const ref = requestIdleCallback(fn);
+
+    return () => cancelIdleCallback(ref);
+  }
+
+  const ref = setTimeout(fn, ms);
+
+  return () => clearTimeout(ref);
+}
+
 export function TabPanel({
   children,
   render = "idle",
@@ -9,45 +21,37 @@ export function TabPanel({
   hidden: boolean;
 } & (
     | {
-        render?: "always" | "idle";
+        render?: "idle";
         unmount?: "never" | number;
       }
     | {
         render?: "lazy";
-        unmount?: "always" | "idle" | "never" | number;
+        unmount?: "idle" | "never" | number;
       }
   )) {
-  const [shouldRender, setShouldRender] = React.useState(
-    !props.hidden || render === "always"
-  );
+  const [shouldRender, setShouldRender] = React.useState(!props.hidden);
 
-  const unmountTimer = React.useRef<number>();
+  const renderRef = React.useRef<() => void>();
+  const unmountRef = React.useRef<() => void>();
 
   React.useEffect(() => {
-    if (!props.hidden || render === "always") {
+    if (!props.hidden) {
       setShouldRender(true);
     } else if (render === "idle") {
-      ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
-        setShouldRender(true)
-      );
-    } else if (unmount === "always") {
-      setShouldRender(false);
+      renderRef.current = wait(() => setShouldRender(true));
     } else if (unmount === "idle") {
-      ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
-        setShouldRender(false)
-      );
-    } else if (typeof unmount === "number") {
-      unmountTimer.current = window.setTimeout(() => {
-        setShouldRender(false);
-      }, unmount * 1000);
+      unmountRef.current = wait(() => setShouldRender(false));
+    }
+
+    if (typeof unmount === "number") {
+      unmountRef.current = wait(() => setShouldRender(false), unmount * 1000);
     }
 
     return () => {
-      if (typeof unmountTimer.current === "number") {
-        clearTimeout(unmountTimer.current);
-      }
-
-      unmountTimer.current = undefined;
+      renderRef.current?.();
+      renderRef.current = undefined;
+      unmountRef.current?.();
+      unmountRef.current = undefined;
     };
   }, [props.hidden, render, unmount]);
 

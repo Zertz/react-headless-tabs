@@ -106,12 +106,7 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 possible, the default tab will always be rendered immediately no
                 matter which strategy is set.
               </p>
-              <CodeBlock>{`render?: "always" | "idle" | "lazy"`}</CodeBlock>
-              <p>
-                <Code>{`always`}</Code>: immediately mount the tab panel. While
-                it is provided as an option, <Code>{`idle`}</Code> is usually a
-                better choice.
-              </p>
+              <CodeBlock>{`render?: "idle" | "lazy"`}</CodeBlock>
               <p>
                 ⭐️ <Code>{`idle`}</Code>: eventually mount the tab panel, when
                 the browser is finished doing more important work. Unless there
@@ -132,18 +127,10 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
                 <h4 className="text-xl font-bold">unmount</h4>
               </div>
               <p>
-                When <Code>{`render`}</Code> is set to <Code>{`lazy`}</Code>,
-                this controls if and how the tab panel should be unmounted after
-                it has been hidden. When <Code>{`render`}</Code> is set to{" "}
-                <Code>{`always`}</Code> or <Code>{`idle`}</Code>, the tab panel
-                is hidden but never unmounted.
+                This controls if and how the tab panel should be unmounted after
+                it has been hidden.
               </p>
-              <CodeBlock>{`unmount?: "always" | "idle" | "never" | number`}</CodeBlock>
-              <p>
-                <Code>{`always`}</Code>: immediately unmount the tab panel.
-                While it is provided as an option, <Code>{`idle`}</Code> is
-                usually a better choice.
-              </p>
+              <CodeBlock>{`unmount?: "idle" | "never" | number`}</CodeBlock>
               <p>
                 <Code>{`idle`}</Code>: eventually unmount the tab panel, when
                 the browser is finished doing more important work.
