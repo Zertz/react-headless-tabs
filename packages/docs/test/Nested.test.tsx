@@ -5,9 +5,12 @@ import { Nested } from "../examples/Nested";
 test("Nested", async () => {
   const { getAllByText, getByText } = render(<Nested />);
 
-  await waitFor(() => expect(getAllByText("My Account")).toHaveLength(2));
+  expect(getAllByText("My Account")).toHaveLength(2);
   expect(getByText("Company")).toBeTruthy();
 
-  await waitFor(() => expect(getAllByText("Profile")).toHaveLength(2));
+  expect(getAllByText("Profile")).toHaveLength(2);
   expect(getByText("Settings")).toBeTruthy();
+
+  await waitFor(() => expect(getAllByText("Company")).toHaveLength(2));
+  await waitFor(() => expect(getAllByText("Settings")).toHaveLength(2));
 });
