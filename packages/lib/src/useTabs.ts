@@ -10,7 +10,10 @@ function usePrevious<T>(value: T) {
   return ref.current;
 }
 
-export function useTabs<K extends string>(tabs: K[], defaultTab = tabs.at(0)) {
+export function useTabs<K extends string>(
+  tabs: K[],
+  defaultTab: K | null | undefined = tabs.at(0)
+) {
   const state = React.useState(defaultTab);
   const [selectedTab, setSelectedTab] = state;
 
