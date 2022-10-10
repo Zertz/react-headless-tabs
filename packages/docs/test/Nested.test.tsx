@@ -12,5 +12,5 @@ test("Nested", async () => {
   expect(getByText("Settings")).toBeTruthy();
 
   await waitFor(() => expect(getAllByText("Company")).toHaveLength(2));
-  await waitFor(() => expect(getAllByText("Settings")).toHaveLength(2));
+  expect(getAllByText("Settings")).toHaveLength(2);
 });

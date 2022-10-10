@@ -9,11 +9,7 @@ export function TabPanel({
   hidden: boolean;
 } & (
     | {
-        render?: "always";
-        unmount?: "never";
-      }
-    | {
-        render?: "idle";
+        render?: "always" | "idle";
         unmount?: "never" | number;
       }
     | {
@@ -28,11 +24,9 @@ export function TabPanel({
   const unmountTimer = React.useRef<number>();
 
   React.useEffect(() => {
-    if (render === "always") {
-      return;
-    }
-
-    if (!props.hidden || render === "idle") {
+    if (!props.hidden || render === "always") {
+      setShouldRender(true);
+    } else if (render === "idle") {
       ("requestIdleCallback" in window ? requestIdleCallback : setTimeout)(() =>
         setShouldRender(true)
       );
