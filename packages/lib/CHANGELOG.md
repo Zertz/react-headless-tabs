@@ -1,5 +1,11 @@
 # react-headless-tabs
 
+## 6.0.1
+
+### Patch Changes
+
+- bbadc4f: Only unmount hidden inactive tabs
+
 ## 6.0.0
 
 ### Major Changes
