@@ -115,11 +115,11 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               </p>
               <CodeBlock>{`render?: "idle" | "lazy"`}</CodeBlock>
               <p>
-                ⭐️ <Code>{`"idle"`}</Code>: eventually mount the tab panel,
-                when the browser is finished doing more important work. Unless
-                there are performance constraints to mounting the tab panel
-                early, this typically provides the best user experience as it
-                avoids flickering when the tab panel is initially selected.
+                ⭐️ <Code>"idle"</Code>: eventually mount the tab panel, when
+                the browser is finished doing more important work. Unless there
+                are performance constraints to mounting the tab panel early,
+                this typically provides the best user experience as it avoids
+                flickering when the tab panel is initially selected.
               </p>
               <p>
                 <Code>"lazy"</Code>: mount the tab panel on-demand, when
@@ -141,14 +141,14 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               </p>
               <CodeBlock>{`unmount?: "idle" | "never" | number`}</CodeBlock>
               <p>
-                <Code>{`"idle"`}</Code>: eventually unmount the tab panel, when
-                the browser is finished doing more important work.
+                <Code>"idle"</Code>: eventually unmount the tab panel, when the
+                browser is finished doing more important work.
               </p>
               <p>
-                <Code>{`"never"`}</Code>: never unmount the tab panel. Unless
-                there are performance constraints to keeping the tab panel
-                mounted, this typically provides the best user experience as it
-                avoids flickering when the tab panel is selected again.
+                <Code>"never"</Code>: never unmount the tab panel. Unless there
+                are performance constraints to keeping the tab panel mounted,
+                this typically provides the best user experience as it avoids
+                flickering when the tab panel is selected again.
               </p>
               <p>
                 ⭐️ <Code>{`number`}</Code>: unmount the tab panel after the tab
