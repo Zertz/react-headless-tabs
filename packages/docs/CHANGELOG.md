@@ -1,5 +1,23 @@
 # docs
 
+## 2.0.0
+
+### Major Changes
+
+- 42cc470: Remove always render and unmount strategies
+
+### Minor Changes
+
+- 42cc470: Add strategy to unmount inactive tabs
+
+### Patch Changes
+
+- 018a8ba: Upgrade dependencies
+- Updated dependencies [42cc470]
+- Updated dependencies [42cc470]
+- Updated dependencies [018a8ba]
+  - react-headless-tabs@6.0.0
+
 ## 1.1.3
 
 ### Patch Changes
