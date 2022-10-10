@@ -15,7 +15,8 @@ export function Overview() {
             🤹‍♂️ Well suited for complex use cases, including drag and drop!
           </li>
           <li>
-            🚀 Mix and match rendering strategies for the best performance!
+            🚀 Mix and match render and unmount strategies for the best
+            performance and user experience!
           </li>
           <li>🤓 Available as ESM and CJS!</li>
         </ul>

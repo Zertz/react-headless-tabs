@@ -34,7 +34,10 @@ const [
               <div className="mb-4 flex items-end justify-between border-b border-solid border-gray-400 pb-2">
                 <h4 className="text-xl font-bold">defaultTab</h4>
               </div>
-              <p>The tab that should initially be selected.</p>
+              <p>
+                The tab that should initially be selected, or set{" "}
+                <Code>null</Code> to select none.
+              </p>
               <CodeBlock>defaultTab?: string | null</CodeBlock>
               <p>
                 <em>Defaults to the first tab.</em>
@@ -50,8 +53,9 @@ const [
                 <h4 className="text-xl font-bold">selectedTab</h4>
               </div>
               <p>
-                The currently selected tab, can be null if there are no tabs or
-                if <Code>defaultTab</Code> was initialized to null.
+                The currently selected tab, can be <Code>null</Code> if there
+                are no tabs or if <Code>defaultTab</Code> was initialized to{" "}
+                <Code>null</Code>.
               </p>
               <CodeBlock>selectedTab: string | null</CodeBlock>
             </div>
@@ -59,7 +63,10 @@ const [
               <div className="mb-4 flex items-end justify-between border-b border-solid border-gray-400 pb-2">
                 <h4 className="text-xl font-bold">setSelectedTab</h4>
               </div>
-              <p>Update the selected tab, or pass null to select none.</p>
+              <p>
+                Update the selected tab, or set <Code>null</Code> to select
+                none.
+              </p>
               <CodeBlock>
                 {"setSelectedTab: (tab: string | null) => void"}
               </CodeBlock>
@@ -108,19 +115,21 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               </p>
               <CodeBlock>{`render?: "idle" | "lazy"`}</CodeBlock>
               <p>
-                ⭐️ <Code>{`idle`}</Code>: eventually mount the tab panel, when
-                the browser is finished doing more important work. Unless there
-                are performance constraints to mounting the tab panel early,
-                this typically provides the best user experience as it avoids
-                flickering when the tab panel is initially selected.
+                ⭐️ <Code>{`"idle"`}</Code>: eventually mount the tab panel,
+                when the browser is finished doing more important work. Unless
+                there are performance constraints to mounting the tab panel
+                early, this typically provides the best user experience as it
+                avoids flickering when the tab panel is initially selected.
               </p>
               <p>
-                <Code>{`lazy`}</Code>: mount the tab panel on-demand, when
+                <Code>"lazy"</Code>: mount the tab panel on-demand, when
                 <Code>{`hidden`}</Code> becomes <Code>{`false`}</Code>. This is
                 ideal for post-poning data fetching or heavy work but may cause
                 flickering when the tab is initially selected.
               </p>
-              <em className="block">Defaults to idle</em>
+              <em className="block">
+                Defaults to <Code>"idle"</Code>
+              </em>
             </div>
             <div className="space-y-2">
               <div className="mb-4 flex items-end justify-between border-b border-solid border-gray-400 pb-2">
@@ -132,11 +141,11 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               </p>
               <CodeBlock>{`unmount?: "idle" | "never" | number`}</CodeBlock>
               <p>
-                <Code>{`idle`}</Code>: eventually unmount the tab panel, when
+                <Code>{`"idle"`}</Code>: eventually unmount the tab panel, when
                 the browser is finished doing more important work.
               </p>
               <p>
-                <Code>{`never`}</Code>: never unmount the tab panel. Unless
+                <Code>{`"never"`}</Code>: never unmount the tab panel. Unless
                 there are performance constraints to keeping the tab panel
                 mounted, this typically provides the best user experience as it
                 avoids flickering when the tab panel is selected again.
@@ -144,8 +153,7 @@ const [selectedTab, setSelectedTab] = useTabs(["cats"]);
               <p>
                 ⭐️ <Code>{`number`}</Code>: unmount the tab panel after the tab
                 has been unselected for more than this amount of time, in
-                seconds. This strategy can only be used when <Code>render</Code>{" "}
-                is set to <Code>idle</Code> (default) or <Code>lazy</Code>.
+                seconds.
               </p>
               <em className="block">Defaults to never</em>
             </div>

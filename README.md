@@ -12,7 +12,7 @@
 - 🚛 Bring your own DOM!
 - ✨ Correctly handles dynamic tabs, no more empty tab panels!
 - 🤹‍♂️ Well suited for complex use cases, including drag and drop!
-- 🚀 Mix and match render and unmount strategies for the best performance!
+- 🚀 Mix and match render and unmount strategies for the best performance and user experience!
 - 🤓 Available as ESM and CJS!
 
 ## Getting started
