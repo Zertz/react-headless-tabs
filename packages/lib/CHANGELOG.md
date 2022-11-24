@@ -1,5 +1,11 @@
 # react-headless-tabs
 
+## 6.0.3
+
+### Patch Changes
+
+- b2aabd5: Upgrade dependencies
+
 ## 6.0.2
 
 ### Patch Changes
