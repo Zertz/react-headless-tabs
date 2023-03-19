@@ -1,5 +1,13 @@
 # docs
 
+## 2.0.4
+
+### Patch Changes
+
+- 114ee26: Upgrade dependencies
+- Updated dependencies [114ee26]
+  - react-headless-tabs@6.0.4
+
 ## 2.0.3
 
 ### Patch Changes
